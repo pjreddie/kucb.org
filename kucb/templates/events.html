@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/community.css" />
+{% endblock %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<span class=logo><a href="/community/events/">events</a></span><span class="logo add"><a href="/community/add/event/">add event</a></span>
+<div class=break></div>
+<hr />
+<div class=thin>
+{% include "event_list.html" with type="full" %}
+</div>
+{% endblock %}

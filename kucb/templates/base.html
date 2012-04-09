@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<link rel="icon" href="/media/favicon_32.ico" sizes="32x32">
+<link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href= "/media/css/base.css" />
+    <script type="text/javascript" src="/media/audio-player/audio-player.js"></script>
+    <script type="text/javascript">  
+    AudioPlayer.setup("/media/audio-player/player.swf", {  
+        width: 290,  
+        initialvolume: 100,  
+        transparentpagebg: "yes",  
+        left: "0087FF",  
+        lefticon: "0087FF",
+        loader: "0087FF" 
+    });  
+    </script>
+
+    {% block css %}
+    {% endblock %}
+
+    <title>{% block title %}Unalaska Community Broadcasting | Your Voice in the Aleutians{% endblock %}</title>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30492628-1']);
+  _gaq.push(['_setSiteSpeedSampleRate', 100]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+
+    <div class="center" id=all>
+
+    <div class="center" id="header">
+        {% block header %}
+        <span class=logo id=main><a href="/">kucb</a></span>
+        <div id=nav_bar>
+        <ul class=horz>
+            <li class="logo cell first" id=news><a href="/news/">news</a></li>
+            <li class="logo cell" id=community><a href="/community/">community</a></li>
+            <li class="logo cell" id=about><a href="/about/">about</a></li>
+            <li class="logo cell" id=donate><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EGCRBDNUD7WME" target="_blank">donate</a></li>
+        </ul>
+            <hr class=center id=logo_hbar />
+       <div class="logo tagline">Unalaska Community Broadcasting - KUCB 89.7 FM - Channel 8</div>
+        </div>
+        <img id=islands src="/media/islands.png" />
+        {% endblock %}
+    </div>
+    <div id="base_content">
+        {% block content %}
+        {% endblock %}
+    <hr />
+    </div>
+    <div class="logo tagline"><a href="http://www.facebook.com/KUCB.Unalaska" target="_blank"><img src="/media/facebook_icon.png" style="vertical-align:middle; margin-right:1em;" /></a>Unalaska Community Broadcasting - KUCB 89.7 FM - Channel 8<a href="/rss/" target="_blank"><img src="/media/rss.png" style="vertical-align:middle; margin-left:1em;" /></a></div>
+    </div>
+</body>
+</html>

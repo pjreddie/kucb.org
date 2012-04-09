@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/article.css" />
+<link rel="stylesheet" href= "/media/css/article_short.css" />
+<link rel="stylesheet" href= "/media/css/index.css" />
+{% endblock %}
+
+
+{% load article_render %}
+
+{% block content %}
+
+
+<div id=news_content>
+<div class=main>
+{% for article in articles|slice:":1" %}
+    {% include "news/article.html" with type="short" %}
+{% endfor %}
+</div>
+<div class=rcol>
+{% for article in articles|slice:"1::" %}
+    {% include "news/article.html" with type="teaser" %}
+{% endfor %}
+</div>
+<div class=break></div>
+</div>
+<hr class=separator />
+
+{% if announcements|length %}
+<div class=announcements>
+{% for content in announcements %}
+    {% include "content.html" %}
+{% endfor %}
+</div>
+<hr class=separator />
+{% endif %}
+
+<div id=community_content>
+<div class=col>
+{% include "feed.html" %}
+</div>
+<div class="col colm">
+<div class ="events">
+     <div class = "logo section"><a href="/community/events/">events</a></div>
+{% include "event_list.html" %}
+    </div>
+</div>
+<div class="col colm">
+<div class ="blotter">
+     <div>
+     <span class=logo><a href="/community/blotter/">police blotter</a></span>
+     <br />
+     <span class="date">a random sample...</span>
+    </div>
+{% include "blot_list.html" %}
+</div>
+</div>
+<div class=break></div>
+</div>
+{% endblock %}

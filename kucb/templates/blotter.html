@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/community.css" />
+<link rel="stylesheet" href= "/media/css/nav.css" />
+{% endblock %}
+
+{% block title %}Police Blotter{% endblock %}
+
+{% block content %}
+<span class=logo>police blotter</span>
+<hr />
+{% if page.has_next or page.has_previous %}
+{% include "nav.html" %}
+<hr class=page_bar />
+{% endif %}
+
+<div class=thin>
+{% include "blot_list.html" with type="page" %}
+</div>
+
+{% if page.has_next or page.has_previous %}
+<hr class=page_bar />
+{% include "nav.html" %}
+{% endif %}
+
+{% endblock %}

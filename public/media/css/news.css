@@ -1,0 +1,45 @@
+#articles .img{
+    max-height:30%;
+}
+#articles{
+    width:30em;
+    position:relative;
+    float:left;
+}
+.headline{
+    font-size:1.5em;
+}
+#sidebar{
+    float:left;
+    max-width:15em;
+    margin-right:1em;
+}
+.col{
+    width:16em;
+    float:left;
+}
+.colm{
+    margin-left:1em;
+}
+#news a{
+    color:#889;
+}
+#news a:hover {
+    cursor:pointer;
+    color:#0087ff;
+}
+#category_list{
+    list-style:none;
+    padding:0em;
+    margin:0em;
+}
+.category{
+    padding:0em .5em;
+    line-height:1.5em;
+}
+.logo.top{
+    margin-bottom:.2em;
+}
+.page_bar{
+    margin-bottom:1em;
+}

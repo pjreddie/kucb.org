@@ -1,0 +1,9 @@
+<div class ="feed">
+     <div class = "logo section">state news</div>
+    <div class="list">
+            {% for e in feed %}
+                <p class="headline"><a href="{{ e.link }}" target="_blank">{{ e.title }}</a></p>
+            {% endfor %}
+        <div class=break></div>
+    </div>
+</div>

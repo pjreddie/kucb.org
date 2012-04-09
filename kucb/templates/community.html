@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/community.css" />
+{% endblock %}
+
+{% block title %}Community{% endblock %}
+
+{% block content %}
+<div class="main">
+{% for content in contents %}
+    {% include "content.html" %}
+{% endfor %}
+</div>
+<div class="rcol">
+<span class=logo><a href=/community/classifieds/>Classifieds</a></span>
+{% for classified in classifieds %}
+    <a href={{ classified.image.url }}><img class=classified src="{{ classified.image|thumbnail }}" /></a>
+{% endfor %}
+</div>
+<div class=lcol>
+<span class=logo></span>
+<div class = "logo section"><a href="/community/events/">Events</a></div>
+{% include "event_list.html" %}
+
+</div>
+<div class=lcol>
+<div class ="blotter">
+     <div>
+     <span class=logo><a href="/community/blotter/">Police Blotter</a></span>
+     <br />
+     <span class="date">a random sample...</span>
+    </div>
+{% include "blot_list.html" %}
+</div>
+
+</div>
+<div class=break></div>
+
+{% endblock %}

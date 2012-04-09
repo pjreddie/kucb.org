@@ -1,0 +1,140 @@
+{% load article_render %}
+{% load thumbnail %}
+{% if article %}
+    <div class ="article {{ type }}">
+        <p class=headline >
+        {% if type != "full" %}<a href="/news/article/{{ article.slug }}/">{% endif %}
+            {{ article.title }}
+        {% if type != "full" %}</a>{% endif %}
+        </p>
+        
+        {% if article.author %}
+        <p class=byline>By <span class=name>{{ article.author.first_name }} {{ article.author.last_name }}</span></p>
+        {% else %}
+        <p class=byline>By <span class=name>{{ article.author_name }}</span></p>
+        {% endif %}
+        <p class=date>{{ article.pub_date|date:"l, F d Y" }}</p>
+        {% if article.part_1 and not article.part_2 %}
+        <p id="{{ article.slug }}">
+        <audio controls="controls">
+        <source src="{{ article.part_1.url }}" type="audio/mpeg" />
+        Your browser doesn't support audio :-(
+        </audio>
+        </p>  
+            <script type="text/javascript">  
+                AudioPlayer.embed("{{ article.slug }}", {soundFile: "{{ article.part_1.url }}"});  
+            </script>
+        {% else %}
+            {% if article.part_1 %}
+            <p id="{{ article.slug }}">Part 1:
+            <audio controls="controls">
+            <source src="{{ article.part_1.url }}" type="audio/mpeg" />
+            Your browser doesn't support audio :-(
+            </audio>
+            </p>  
+            <script type="text/javascript">  
+                AudioPlayer.embed("{{ article.slug }}", {soundFile: "{{ article.part_1.url }}"});  
+            </script>
+            {% endif %}
+            {% if article.part_2 %}
+            <p id="{{ article.slug }}_2">Part 2:
+            <audio controls="controls">
+            <source src="{{ article.part_2.url }}" type="audio/mpeg" />
+            Your browser doesn't support audio :-(
+            </audio>
+            </p>  
+            <script type="text/javascript">  
+                AudioPlayer.embed("{{ article.slug }}_2", {soundFile: "{{ article.part_2.url }}"});  
+            </script>
+            {% endif %}
+            {% if article.part_3 %}
+            <p id="{{ article.slug }}_3">Part 3:
+            <audio controls="controls">
+            <source src="{{ article.part_3.url }}" type="audio/mpeg" />
+            Your browser doesn't support audio :-(
+            </audio>
+            </p>  
+            <script type="text/javascript">  
+                AudioPlayer.embed("{{ article.slug }}_3", {soundFile: "{{ article.part_3.url }}"});  
+            </script>
+            {% endif %}
+            {% if article.part_4 %}
+            <p id="{{ article.slug }}_4">Part 4:
+            <audio controls="controls">
+            <source src="{{ article.part_4.url }}" type="audio/mpeg" />
+            Your browser doesn't support audio :-(
+            </audio>
+            </p>  
+            <script type="text/javascript">  
+                AudioPlayer.embed("{{ article.slug }}_4", {soundFile: "{{ article.part_4.url }}"});  
+            </script>
+            {% endif %}
+
+        {% endif %}
+
+        <div class = copy>
+        {% if article.stock_image and type != "teaser" %}
+            <div class = img>
+            <img class=article_img src={{ article.stock_image.image|thumbnail }}></img>
+            {% if article.image_caption %}
+            <span class=caption>{{ article.image_caption }}</span>
+            {% endif %}
+            </div>
+        {% else %}
+            {% if article.image and type != "teaser" %}
+                <div class=img>
+                <img class=article_img src={{ article.image|thumbnail }}></img>
+                {% if article.image_caption %}
+                <span class=caption>{{ article.image_caption }}</span>
+                {% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {% if type == "full" %}
+            {{ article.text|safe }}
+        {% else %}
+            {% if type == "short" %}
+                {% if article.blurb %}
+                    {{ article.blurb|safe }}
+                {% else %}
+                    {{ article.text|truncate_text:400|safe }}
+                {% endif %}
+            {% else %}
+                {% if article.teaser %}
+                    {{ article.teaser|safe }}
+                {% else %}
+                    {{ article.text|truncate_text:10|safe }}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+        </div>
+        <div class=break></div>
+    </div>
+    {% if type == "full" %}
+    <hr />
+    <div id=comments>
+        {% if comments|length %}
+        <p class="logo">afterthoughts</p>
+        {% for comment in comments %}
+            <div class=comment>
+            <p class=date>{{ comment.author }} on {{ comment.date|date:"l, F d Y" }}:</p>
+            <p class=copy>{{ comment.text }}</p>
+            </div>
+        {% endfor %}
+        {% endif %}
+        <form id="form" action="" method="post">{% csrf_token %}
+        <fieldset>
+        <legend class="headline" id=legend>Thoughts?</legend>
+        <label for="id_author">Your Name:</label><br><input id="id_author" type="text" name="author" maxlength="100">
+        <br />
+        <div id=text_input><label for="id_text">Your Thought:</label><br><textarea id="id_text" name="text"></textarea>
+        <br />
+        </div>
+        <input id=submit type="submit" value="Onward, to glory!">
+        </fieldset>
+        </form>
+    </div>
+    {% endif %}
+{% endif %}

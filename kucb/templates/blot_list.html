@@ -1,0 +1,12 @@
+<div id = blots class="list">
+    {% if type == "page" %}
+    {% for blot in page.object_list %}
+        {% include "blot.html" %}
+    {% endfor %}
+    {% else %}
+    {% for blot in blots %}
+        {% include "blot.html" %}
+    {% endfor %}
+    {% endif %}
+    
+</div>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/community.css" />
+{% endblock %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<span class=logo>add your event</span>
+<hr />
+<div class=thin>
+<form action="/community/add/event/" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+</div>
+{% endblock %}

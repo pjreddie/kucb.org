@@ -1,0 +1,18 @@
+{% load thumbnail %}
+<div class=content>
+<span class=logo>{{ content.title }}</span>
+<br />
+
+{% if content.pub_date %}
+<span class=date>{{ content.pub_date|date:"l d F Y" }}</span>
+{% endif %}
+
+<div class = copy>
+{% if content.image %}
+    <img class = img src={{ content.image|thumbnail }}></img>
+{% endif %}
+
+    {{ content.text|safe }} 
+</div>
+
+</div>

@@ -1,0 +1,13 @@
+{% load article_render %}<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+    <title>Unalaska Community Broadcasting</title>
+    <link>http://kucb.org</link>
+    <language>en-us</language>
+    <description>Unalaska Community Broadcasting is a public radio station and APRN affiliate in Unalaska, AK.</description>
+    {% for article in articles %}<item>
+        <title>{{ article.title }}</title>
+        <link>http://kucb.org/news/article/{{ article.slug }}/</link>
+    </item>{% endfor %}
+    </channel>
+</rss>

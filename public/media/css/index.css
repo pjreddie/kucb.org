@@ -1,0 +1,76 @@
+.main{
+    padding-bottom:100em;
+    margin-bottom:-100em;
+}
+.rcol{
+    padding-bottom:100em;
+    margin-bottom:-100em;
+}
+.rcol .article{
+    font-size:.7em;
+}
+#news_content{
+    width:50em;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:2em;
+    overflow:hidden;
+}
+.teaser .content{
+    font-size:.7em;
+}
+.separator{
+    width:50em;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:1em;
+    margin-top:1em;
+    border-style:none;
+    border-width:0em;
+    background-color:black;
+    height:1px;
+}
+#community_content{
+    width:50em;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:2em;
+    margin-bottom:2em;
+}
+.col{
+    width:16em;
+    float:left;
+}
+.colm{
+    margin-left:1em;
+}
+.blot{
+    margin-top:1em;
+}
+.event{
+    margin-top:1em;
+}
+.list{
+}
+.time{
+    text-align:right;
+}
+.event_name{
+    font-family: Helvetica,Arial,sans-serif;
+    font-size:.8em;
+    font-weight:bold;
+}
+.feed .headline{
+    font-size:1em;
+    margin-top:1em;
+}
+.announcements{
+    width:50em;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1em;
+}
+
+.announcements .logo{
+    color:#B3248D;
+}

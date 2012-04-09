@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/community.css" />
+{% endblock %}
+{% block title %}Classifieds{% endblock %}
+
+{% block content %}
+<div class=classifieds>
+<h1 class=title>For Sale/Rent</h1>
+{% for personal in personals %}
+    <a href = "{{ personal.image.url }}"><img src="{{ personal.image|thumbnail }}" class=img /></a>
+{% endfor %}
+<div class=break> </div>
+<hr />
+<h1 class=title>Job Postings</h1>
+{% for job in jobs %}
+    <a href = "{{ job.image.url }}"><img src="{{ job.image|thumbnail }}" class=img /></a>
+{% endfor %}
+<div class=break> </div>
+</div>
+{% endblock %}

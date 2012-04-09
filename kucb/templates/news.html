@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/news.css" />
+<link rel="stylesheet" href= "/media/css/nav.css" />
+
+{% if selected %}
+    <style>.{{ selected }}{background-color:#e0e0ff;}</style>
+{% else %}
+    <style>.allc{background-color:#e0e0ff;}</style>
+{% endif %}
+
+{% endblock %}
+
+{% block title %}News{% endblock %}
+
+{% load article_render %}
+
+{% block content %}
+
+<hr />
+{% if page.has_next or page.has_previous %}
+{% include "nav.html" %}
+<hr class=page_bar />
+{% endif %}
+
+<div id=sidebar>
+<ul id=category_list>
+<li class="logo top">categories</li>
+    <li class="category logo small allc"><a href="/news/"><div>all</div></a></li>
+{% for category in categories %}
+    <li class="category logo small {{ category.slug }}"><a href="/news/category/{{ category.slug}}/"><div>{{ category.name }}</div></a></li>
+{% endfor %}
+</ul>
+</div>
+
+<div id=articles>
+{% for article in page.object_list %}
+    {% include "news/article.html" with type="short" %}
+    {% if not forloop.last %}
+        <hr class=article_sep />
+    {% endif %}
+{% endfor %}
+</div>
+
+<div class=break></div>
+{% if page.has_next or page.has_previous %}
+<hr />
+{% include "nav.html" %}
+{% endif %}
+{% endblock %}

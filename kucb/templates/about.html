@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/about.css" />
+{% endblock %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="main">
+{% for content in contents %}
+    {% include "content.html" %}
+{% endfor %}
+</div>
+<div class="rcol">
+<span class=logo>people</span>
+<br />
+{% for bio in bios %}
+    {% include "bio.html" %}
+    {% if not forloop.last %}
+        <hr />
+    {% endif %}
+{% endfor %}
+</div>
+<div class=break></div>
+{% endblock %}

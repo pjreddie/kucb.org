@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/news.css" />
+<link rel="stylesheet" href= "/media/css/article_style.css" />
+{% endblock %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% load article_render %}
+
+{% block content %}
+<div id=news_content>
+    {% include "news/article.html" with type="full" %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<div class="pagination">
+        {% if page.has_previous %}
+            <div class="logo small button left"><a href="?page=1">first</a></div>
+            <div class="logo small button left"><a href="?page={{ page.previous_page_number }}">previous</a></div>
+        {% endif %}
+        
+
+        {% if page.has_next %}
+            <div class="logo small button right"><a href="?page={{ page.paginator.num_pages }}">last</a></div>
+            <div class="logo small button right"><a href="?page={{ page.next_page_number }}">next</a></div>
+        {% endif %}
+            <div class="logo small page">page {{ page.number }}</div>
+        <div class=break></div>
+</div>

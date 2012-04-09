@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+{% spaceless %}
+{% for article in articles %}
+<url>
+<loc>http://kucb.org/news/article/{{ article.slug }}/</loc>
+<lastmod>{{ article.pub_date|date:"Y-m-d" }}</lastmod>
+<changefreq>never</changefreq>
+<priority>.5</priority>
+<news:news>
+<news:publication>
+<news:name>Unalaska Community Broadcasting</news:name>
+<news:language>en</news:language>
+</news:publication>
+<news:title>{{ article.title }}</news:title>
+<news:geo_locations>Unalaska, Alaska, USA</news:geo_locations>
+<news:publication_date>{{ article.pub_date|date:"Y-m-d" }}</news:publication_date>
+{% if article.tags %}<news:keywords>{{ article.tags }}</news:keywords>{% endif %}
+</news:news>
+</url>
+{% endfor %}
+{% endspaceless %}
+</urlset>

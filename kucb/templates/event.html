@@ -1,0 +1,32 @@
+<div class=event>
+{% if type == "single" %}
+<span class="headline small">{{ event.name }}</span>
+{% else %}
+<span class="headline small"><a href="/community/events/{{ event.slug }}">{{ event.name }}</a></span>
+{% endif %}
+<br />
+<span class=date>{{ event.start_date|date:"l, F d Y" }}{% if event.start_time %}{{ event.start_time|time:", P" }}{% endif %}{% if event.end_date or event.end_time %} - {% endif %}{% if event.end_date %}{{ event.end_date|date:"l, F d Y" }}{% endif %}{% if event.end_time %}{% if event.end_date %}, {% endif %}{{ event.end_time|time:"P" }}{% endif %}</span>
+<br />
+{% if type == "full" or type == "single" %}
+    <p>
+    {% if event.location %}
+    <span>Location: {{ event.location }}</span>
+    <br />
+    {% endif %}
+    {% if event.price %}
+    <span>Price: {{ event.price }}</span>
+    <br />
+    {% endif %}
+    {% if event.contact %}
+    <span>Contact: {{ event.contact }}</span>
+    <br />
+    {% endif %}
+    {% if event.age_suitability %}
+    <span>Age suitability: {{ event.age_suitability }}</span>
+    <br />
+    {% endif %}
+
+    </p>
+<span class=details>{{ event.description }}</span>
+{% endif %}
+</div>
