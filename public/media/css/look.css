@@ -198,3 +198,9 @@ h1{
 .right{
     float:right;
 }
+.edit{
+    color:#fff;
+}
+.article:hover .edit{
+    color:#aaa;
+}

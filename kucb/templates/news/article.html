@@ -13,6 +13,9 @@
         {% else %}
         <p class=byline>By <span class=name>{{ article.author_name }}</span></p>
         {% endif %}
+        {% if editor %}
+        <a href="/admin/news/article/{{ article.pk }}/"><span class="date right edit">edit</span></a>
+        {% endif %}
         <p class=date>{{ article.pub_date|date:"l, F d Y" }}</p>
         {% if article.part_1 and not article.part_2 %}
         <p id="{{ article.slug }}">
