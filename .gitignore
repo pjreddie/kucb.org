@@ -1,6 +1,6 @@
 # Compiled and database info #
 *.py[co]
-#*.db
+*.db
 *.json
 
 # OS Generated #
