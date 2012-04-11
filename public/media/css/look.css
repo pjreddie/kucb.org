@@ -122,9 +122,9 @@ a:hover {
 .caption{
     color:#555;
     font-family:'Palatino','Palatino Lynotype','Georgia', serif;
-    font-size:.8em;
+    font-size:.5em;
     font-style:italic;
-    line-height:1em;
+    line-height:1.5em;
 }
 .copy{
     font-family:'Palatino','Palatino Lynotype','Georgia', serif;
