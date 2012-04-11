@@ -93,6 +93,8 @@ def article(request, slug):
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
+            if request.POST['email']:
+                return HttpResponseRedirect('/')
             c = form.save(commit=False)
             if not c.author:
                 c.author="Anonymous"

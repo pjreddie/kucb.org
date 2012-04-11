@@ -53,3 +53,6 @@ margin-right:auto;
     margin:.5em 0em;
     color:#555;
 }
+#email_input{
+    display:none;
+}
