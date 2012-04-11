@@ -1,0 +1,18 @@
+# Compiled and database info #
+*.py[co]
+*.db
+*.json
+
+# OS Generated #
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+*.swp
+
+# Static files #
+public/static
+public/media/js/tiny_mce
+public/media/personal
+public/media/jobposting
+public/media/img
