@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/about.css" />
+{% endblock %}
+
+{% block title %}{{ bio.name }}{% endblock %}
+
+{% block content %}
+<div class=profile_content>
+
+{% include "bio.html" %}
+{% if articles %}
+<hr />
+<p class="logo">recent articles</p>
+<div id=articles>
+{% for article in articles %}
+    {% include "news/article.html" with type="short" %}
+    {% if not forloop.last %}
+        <hr />
+    {% endif %}
+{% endfor %}
+</div>
+{% endif %}
+</div>
+
+{% endblock %}

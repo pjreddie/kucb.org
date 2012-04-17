@@ -10,7 +10,7 @@ class Content(models.Model):
         return self.title
 
 class Bio(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name="bio")
     name = models.CharField(max_length=100, help_text="Optional, use if not a user", blank=True, null=True)
     job_title = models.CharField(max_length=100)
     image = models.FileField(upload_to="img", blank=True)

@@ -9,9 +9,9 @@
         </p>
         
         {% if article.author %}
-        <p class=byline>By <span class=name>{{ article.author.first_name }} {{ article.author.last_name }}</span></p>
+        <p class=byline>By <span class=author><a rel="author" href="/about/profile/{{ article.author.pk }}/">{{ article.author.first_name }} {{ article.author.last_name }}</a></span></p>
         {% else %}
-        <p class=byline>By <span class=name>{{ article.author_name }}</span></p>
+        <p class=byline>By <span class=author>{{ article.author_name }}</span></p>
         {% endif %}
         {% if editor %}
         <a href="/admin/news/article/{{ article.pk }}/"><span class="date right edit">edit</span></a>

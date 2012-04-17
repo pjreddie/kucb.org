@@ -127,8 +127,8 @@ def post(request, slug):
     return redirect('/news/article/'+article.slug, permanent=True)
 
 def sitemap(request):
-    articles = Article.objects.all().order_by('-pub_date')[:20]
+    articles = Article.objects.all().order_by('-pub_date')[:1000]
     return render_to_response('article_sitemap.xml',{'articles':articles}, mimetype='application/xml')
 def rss(request):
-    articles = Article.objects.all().order_by('-pub_date')[:5]
+    articles = Article.objects.all().order_by('-pub_date')[:10]
     return render_to_response('rss.xml',{'articles':articles}, mimetype='application/rss+xml')

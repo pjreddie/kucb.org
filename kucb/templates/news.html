@@ -38,7 +38,7 @@
 {% for article in page.object_list %}
     {% include "news/article.html" with type="short" %}
     {% if not forloop.last %}
-        <hr class=article_sep />
+        <hr />
     {% endif %}
 {% endfor %}
 </div>

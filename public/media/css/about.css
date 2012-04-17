@@ -18,4 +18,10 @@
 }
 .byline .name{
     font-size:1.5em;
+    color:#aa5f22;
+}
+.profile_content{
+    max-width:30em;
+    margin-left:auto;
+    margin-right:auto;
 }

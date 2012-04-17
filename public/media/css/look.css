@@ -55,6 +55,11 @@ a:hover {
     text-transform:lowercase;
 }
 
+p.logo{
+    margin-top:0em;
+    margin-bottom:.5em;
+}
+
 .logo#main{
     font-size:7em;
     position:relative;
@@ -93,7 +98,7 @@ a:hover {
 }
 
 .headline{
-    font-size:2em;
+    font-size:1.5em;
     font-family:'Palatino', serif;
     margin:.5em 0em;
     line-height:1em;
@@ -109,8 +114,15 @@ a:hover {
     margin:.25em 0em;
     color:#555;
 }
-.byline .name{
+.author{
     color:#aa5f22;
+}
+.author a{
+    color:#aa5f22;
+}
+.author a:hover {
+    color:#FF9433;
+    text-decoration:none;
 }
 .date{
     color:#555;

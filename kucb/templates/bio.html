@@ -1,10 +1,6 @@
 {% load thumbnail %}
 <div class=bio>
-{% if bio.user %}
-    <p class=byline><span class=name>{{ bio.user.first_name }} {{ bio.user.last_name }}</span></p>
-{% else %}
     <p class=byline><span class=name>{{ bio.name }}</span></p>
-{% endif %}
     <p class=date>{{ bio.job_title }}</p>
 
     <div class = copy>

@@ -6,7 +6,7 @@
     padding-bottom:100em;
     margin-bottom:-100em;
 }
-.rcol .article{
+.rcol .copy{
     font-size:.7em;
 }
 #news_content{
@@ -49,11 +49,6 @@
 }
 .event{
     margin-top:1em;
-}
-.list{
-}
-.time{
-    text-align:right;
 }
 .event_name{
     font-family: Helvetica,Arial,sans-serif;

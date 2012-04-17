@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^community/events/(?P<slug>[a-z0-9\-]+)/$', community.views.event),
     url(r'^community/blotter/$', community.views.blotter),
     url(r'^about/$', about.views.about),
+    url(r'^about/profile/(\d+)/$', about.views.profile),
     url(r'^blotter/upload/$', community.views.upload_blotter),
     url(r'^admin/', include(admin.site.urls)),
 )

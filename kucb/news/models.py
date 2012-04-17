@@ -41,7 +41,7 @@ class StockPhoto(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length = 500)
-    author = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name="articles")
     author_name = models.CharField(help_text="Optional, if author is not a user",max_length=100, blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     teaser = tinymce_models.HTMLField("Teaser intro (optional)", blank=True, default="")

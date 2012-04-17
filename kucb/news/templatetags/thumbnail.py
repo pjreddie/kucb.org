@@ -13,13 +13,16 @@ def thumbnail(img):
 
     if os.path.exists(thumb_path):
         return thumb_url
-    orig = Image.open(img.path)
-    if orig.size[0]<THUMBSIZE:
-        return img.url
+    try:
+        orig = Image.open(img.path)
+        if orig.size[0]<THUMBSIZE:
+            return img.url
 
-    ratio = float(orig.size[1])/orig.size[0]
-    x = THUMBSIZE
-    y = int(x * ratio)
-    thumb = orig.resize((x,y),Image.ANTIALIAS)
-    thumb.save(thumb_path, orig.format)
-    return thumb_url
+        ratio = float(orig.size[1])/orig.size[0]
+        x = THUMBSIZE
+        y = int(x * ratio)
+        thumb = orig.resize((x,y),Image.ANTIALIAS)
+        thumb.save(thumb_path, orig.format)
+        return thumb_url
+    except:
+        return img.url
