@@ -18,23 +18,29 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
 
-    url(r'^news/$', news.views.news),
+    url(r'^$', news.views.index),
+
 
     url(r'^sitemap\.xml', news.views.sitemap),
     url(r'^rss/', news.views.rss),
-    url(r'^news/article/(?P<slug>[a-z0-9\-]+)/$', news.views.article),
-    url(r'^post/(?P<slug>[a-z0-9\-]+)/$', news.views.post),
 
-    url(r'^news/category/(?P<slug>[a-z0-9\-]+)/$', news.views.category),
-    url(r'^$', news.views.index),
+    url(r'^news/$', news.views.news),
+    url(r'^news/category/(?P<slug>[-\w]+)/$', news.views.category),
+    url(r'^news/article/(?P<slug>[-\w]+)/$', news.views.article),
+    url(r'^post/(?P<slug>[-\w]+)/$', news.views.post),
+
     url(r'^community/$', community.views.community),
     url(r'^community/events/$', community.views.events),
     url(r'^community/classifieds/$', community.views.classifieds),
     url(r'^community/add/event/$', community.views.add_event),
-    url(r'^community/events/(?P<slug>[a-z0-9\-]+)/$', community.views.event),
+    url(r'^community/events/(?P<slug>[-\w]+)/$', community.views.event),
     url(r'^community/blotter/$', community.views.blotter),
-    url(r'^about/$', about.views.about),
-    url(r'^about/profile/(\d+)/$', about.views.profile),
     url(r'^blotter/upload/$', community.views.upload_blotter),
+
+    url(r'^about/$', about.views.about),
+    url(r'^about/profile/(?P<slug>[-\w]+)/$', about.views.profile),
+    url(r'^about/program/(?P<slug>[-\w]+)/$', about.views.program),
+    url(r'^about/schedule/$', about.views.schedule),
+
     url(r'^admin/', include(admin.site.urls)),
 )

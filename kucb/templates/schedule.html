@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/about.css" />
+<link rel="stylesheet" href= "/media/css/schedule.css" />
+{% endblock %}
+
+{% block title %}Schedule{% endblock %}
+
+{% block content %}
+<table id=schedule>
+    <tr>
+    <th></th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>Sunday</th>
+    </tr>
+{% for split in schedule %}
+    <tr>
+    <td nowrap="nowrap" class="logo small time">{{ split|first|time:"P" }}</td>
+    {% for program in split|slice:"1:" %}
+    {% if program %}
+    <td class="program">
+    <p class="headline"><a href ="{{ program.program.get_absolute_url }}">{{ program.program.title }}</a></p>
+    {% if program.program.producer %}
+    <p class=byline>with <span class=author><a href={{ program.program.producer.get_absolute_url }}>{{ program.program.producer }}</a></span></p>
+    {% else %}
+    {% if program.program.producer_name %}
+    <p class=byline>with <span class=author>{{ program.program.producer_name }}</span></p>
+    {% endif %}
+    {% endif %}
+    {% else %}
+    <td class="blank">
+    {% endif %}
+    </td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

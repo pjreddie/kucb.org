@@ -16,12 +16,16 @@
 .bio .copy{
     font-size:.8em;
 }
-.byline .name{
-    font-size:1.5em;
-    color:#aa5f22;
+.byline{
+    font-size:1.25em;
 }
 .profile_content{
     max-width:30em;
+    margin-left:auto;
+    margin-right:auto;
+}
+.program_content{
+    width:30em;
     margin-left:auto;
     margin-right:auto;
 }

@@ -27,7 +27,7 @@ class ArticleAdmin(admin.ModelAdmin):
             'fields': ('part_1','part_2','part_3','part_4',)
         }),
         ('Publication Info',{
-            'fields': ('pub_date','first','second','third')
+            'fields': ('pub_date','visible','first','second','third')
         }),
         ('Article Intros', {
             'classes': ('collapse',),

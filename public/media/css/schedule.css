@@ -1,0 +1,20 @@
+#schedule{
+    font-size:.6em;
+    border-spacing:0em;
+    width:100%;
+}
+.program, .blank{
+    vertical-align:top;
+    border-left:1px solid #aaa;
+}
+.program{
+    border-top:1px solid #aaa;
+    border-radius:1em 1em 0em 0em;
+}
+td.time{
+    border-left:none;
+    vertical-align:top;
+}
+.byline{
+    font-size:1em;
+}

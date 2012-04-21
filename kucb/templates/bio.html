@@ -1,6 +1,6 @@
 {% load thumbnail %}
 <div class=bio>
-    <p class=byline><span class=name>{{ bio.name }}</span></p>
+    <p class=byline><span class=author>{% if link %}<a href="{{ bio.get_absolute_url }}">{% endif %}{{ bio.name }}{% if link %}</a>{% endif %}</span></p>
     <p class=date>{{ bio.job_title }}</p>
 
     <div class = copy>

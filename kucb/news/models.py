@@ -4,13 +4,16 @@ from tinymce import models as tinymce_models
 from django.template.defaultfilters import slugify
 import random
 from django.core.cache import cache
-
-def get_default_author():
-    return User.objects.get_or_create(name='KUCB News')[0]
+from kucb.about.models import Bio
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(null=True, blank=True, editable=False)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('kucb.news.views.category',[], {'slug':self.slug})
+
     def __unicode__(self):
         return self.name
     def save(self, *args, **kwargs):
@@ -38,16 +41,16 @@ class StockPhoto(models.Model):
     def __unicode__(self):
         return self.title
 
-
 class Article(models.Model):
     title = models.CharField(max_length = 500)
-    author = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name="articles")
+    author = models.ForeignKey(Bio, blank=True, null=True, on_delete=models.SET_NULL, related_name="articles")
     author_name = models.CharField(help_text="Optional, if author is not a user",max_length=100, blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     teaser = tinymce_models.HTMLField("Teaser intro (optional)", blank=True, default="")
     blurb = tinymce_models.HTMLField("Short intro (optional)", blank=True, default="")
     text = tinymce_models.HTMLField()
     pub_date = models.DateTimeField('Date Published')
+    visible = models.BooleanField(default=True)
     stock_image = models.ForeignKey(StockPhoto, blank=True, null=True)
     image = models.FileField(upload_to="img", blank=True)
     image_caption = models.CharField(max_length=500, blank=True, default="")
@@ -59,12 +62,15 @@ class Article(models.Model):
     second = models.BooleanField(default=False)
     third = models.BooleanField(default=False)
     slug = models.SlugField(null=True, blank=True, unique=True, editable=False)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('kucb.news.views.article',[], {'slug':self.slug})
+
     def __unicode__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        if self.author and not self.author_name:
-            self.author_name = self.author.first_name + " " + self.author.last_name
         if not self.author and not self.author_name:
             self.author_name = "KUCB News"
         if not self.slug:
@@ -92,7 +98,6 @@ class Article(models.Model):
                 if self != a:
                     a.third = False
                     a.save()
-        cache.clear()
         super(Article, self).save(*args, **kwargs)
 
 class Comment(models.Model):

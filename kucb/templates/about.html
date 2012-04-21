@@ -15,7 +15,7 @@
 <div class="rcol">
 <p class=logo>people</p>
 {% for bio in bios %}
-    {% include "bio.html" %}
+    {% include "bio.html" with link="True" %}
     {% if not forloop.last %}
         <hr />
     {% endif %}

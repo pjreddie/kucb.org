@@ -9,7 +9,7 @@
         </p>
         
         {% if article.author %}
-        <p class=byline>By <span class=author><a rel="author" href="/about/profile/{{ article.author.pk }}/">{{ article.author.first_name }} {{ article.author.last_name }}</a></span></p>
+        <p class=byline>By <span class=author><a rel="author" href="{{ article.author.get_absolute_url }}/">{{ article.author.name }}</a></span></p>
         {% else %}
         <p class=byline>By <span class=author>{{ article.author_name }}</span></p>
         {% endif %}

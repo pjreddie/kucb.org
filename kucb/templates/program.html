@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href= "/media/css/about.css" />
+{% endblock %}
+
+{% block title %}{{ program.title }}{% endblock %}
+
+{% block content %}
+<div class=program_content>
+<p class=headline>{{ program.title }}</p>
+{% if program.producer %}
+<p class=byline>with <span class=author><a href={{ program.producer.get_absolute_url }}>{{ program.producer }}</a></span></p>
+{% else %}
+{% if program.producer_name %}
+<p class=byline>with <span class=author>{{ program.producer_name }}</span></p>
+{% endif %}
+{% endif %}
+{{ program.description|safe }}
+{% if program.link %}
+<a href={{ program.link }}>website</a>
+{% endif %}
+</div>
+{% endblock %}
