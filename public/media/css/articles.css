@@ -28,7 +28,7 @@ fieldset{
     margin-right:auto;
 }
 #text_input, #mail_input{
-    margin-top:1em;
+    margin-top:.5em;
 }
 #submit{
 margin-top:1em;
@@ -55,4 +55,7 @@ margin-right:auto;
 }
 #email_input{
     display:none;
+}
+.errorlist{
+    color:#7E31B5;
 }

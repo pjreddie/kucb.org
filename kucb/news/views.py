@@ -6,7 +6,7 @@ from kucb.news.models import Article, Category, RSSHeadline, Comment
 from kucb.about.models import Announcement
 from kucb.community.models import Blot, Event
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 import random
 from django.core.cache import cache
 from django.db.models import signals
@@ -88,6 +88,9 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comment
         exclude = ('date','parent')
+        widgets = {
+            'text': Textarea(),
+        }
 
 
 def article(request, slug):

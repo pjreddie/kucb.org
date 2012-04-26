@@ -101,7 +101,7 @@ class Article(models.Model):
         super(Article, self).save(*args, **kwargs)
 
 class Comment(models.Model):
-    author = models.CharField(max_length=100,blank=True, default="Anonymous")
+    author = models.CharField(max_length=100)
     mail = models.EmailField(null=True)
     text = models.TextField(max_length=1000)
     date = models.DateTimeField()
