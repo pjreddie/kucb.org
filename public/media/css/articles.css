@@ -27,7 +27,7 @@ fieldset{
     margin-left:auto;
     margin-right:auto;
 }
-#text_input{
+#text_input, #mail_input{
     margin-top:1em;
 }
 #submit{

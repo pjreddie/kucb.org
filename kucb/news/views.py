@@ -16,7 +16,6 @@ def cache_clear(sender, **kwards):
 
 signals.post_save.connect(cache_clear, dispatch_uid="1")
 
-
 def index(request):
     currdate = datetime.datetime.now()
     rangedate = currdate - datetime.timedelta(weeks=2)

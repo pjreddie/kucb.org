@@ -134,8 +134,10 @@
         <legend class="headline" id=legend>Thoughts?</legend>
         <label for="id_author">Your Name:</label><br><input id="id_author" type="text" name="author" maxlength="100">
         <br />
+        {{ form.mail.errors }}
+        <div id=mail_input><label for="id_mail">Your Email (will not be posted):</label><br><input id="id_mail" type="text" name="mail" maxlength="75"></input></div>
         <div id=text_input><label for="id_text">Your Thought:</label><br><textarea id="id_text" name="text"></textarea></div>
-        <div id=email_input><label for="id_email">Your Email:</label><br><input id="id_email" type="text" name="email" maxlength="100"></input></div>
+        <div id=email_input><label for="id_email">Your Email (if you can read this, you should leave this field empty):</label><br><input id="id_email" type="text" name="email" maxlength="100"></input></div>
         <br />
         <input id=submit type="submit" value="Onward, to glory!">
         </fieldset>

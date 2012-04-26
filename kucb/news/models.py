@@ -102,6 +102,7 @@ class Article(models.Model):
 
 class Comment(models.Model):
     author = models.CharField(max_length=100,blank=True, default="Anonymous")
+    mail = models.EmailField(null=True)
     text = models.TextField(max_length=1000)
     date = models.DateTimeField()
     parent = models.ForeignKey(Article, related_name="comments")
