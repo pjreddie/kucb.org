@@ -1,4 +1,4 @@
-#base_content{
+.base_content{
     width:50em;
     margin-left:auto;
     margin-right:auto;
@@ -68,7 +68,9 @@ p.logo{
 .logo.tagline{
     font-size:1em;
     text-align:center;
-    margin-top:1em;
+}
+.tagline img{
+    vertical-align:middle;
 }
 #logo_hbar{
     margin-top:1em;
@@ -210,9 +212,19 @@ h1{
 .right{
     float:right;
 }
+.left{
+    float:left;
+}
 .edit{
     color:#fff;
 }
 .article:hover .edit{
     color:#aaa;
 }
+.footer{
+    width:50em;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:2em;
+}
+

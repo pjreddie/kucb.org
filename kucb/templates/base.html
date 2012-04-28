@@ -4,7 +4,7 @@
 <head>
 <link rel="icon" href="/media/favicon_32.ico" sizes="32x32">
 <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href= "/media/css/look.css" />
+    <link rel="stylesheet" href= "/media/css/base_v1.0.css" />
     <script type="text/javascript" src="/media/audio-player/audio-player.js"></script>
     <script type="text/javascript">  
     AudioPlayer.setup("/media/audio-player/player.swf", {  
@@ -57,12 +57,12 @@
         <img id=islands src="/media/islands.png" />
         {% endblock %}
     </div>
-    <div id="base_content">
+    <div class="base_content">
         {% block content %}
         {% endblock %}
     <hr />
     </div>
-    <div class="logo tagline"><a href="http://www.facebook.com/KUCB.Unalaska" target="_blank"><img src="/media/facebook_icon.png" style="vertical-align:middle; margin-right:1em;" /></a>Unalaska Community Broadcasting - KUCB 89.7 FM - Channel 8<a href="/rss/" target="_blank"><img src="/media/rss.png" style="vertical-align:middle; margin-left:1em;" /></a></div>
+    <div class="logo footer tagline"><div class=left><a href="http://www.facebook.com/KUCB.Unalaska" target="_blank"><img src="/media/facebook_icon.png" /></a> connect <a href="/rss/" target="_blank"><img src="/media/rss.png" /></a></div> Unalaska Community Broadcasting - KUCB 89.7 FM - Channel 8 <div class=right><a href="/media/kucb.pls" target="_blank"><img src="/media/itunes.png" /></a> listen <a href="/media/kucb.m3u" target="_blank"><img src="/media/wmp.png" /></a></div></div>
     </div>
 </body>
 </html>
