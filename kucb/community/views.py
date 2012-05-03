@@ -6,11 +6,19 @@ from django.template import RequestContext
 from django import forms
 from kucb.community.handle_upload import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.forms import ModelForm
+from django.forms import ModelForm, DateField, TimeField
 import random
 import itertools
 
+date_formats = ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', '%b %d %Y', '%b %d, %Y', '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y','%d %B %Y', '%d %B, %Y']
+time_formats = ["%H:%M","%H","%I%p","%I %p", "%I:%M%p", "%I:%M %p"]
+
+
 class EventForm(ModelForm):
+    start_date = DateField(help_text="Many formats supported, eg: 'October 25 2006', '2006-10-25', '10/25/2006'", input_formats=date_formats)
+    start_time = TimeField(help_text="Optional, supported formats (12 or 24 hour): '21','21:00', '9PM', '9pm', '9:00 pm', '9:00 PM'",required=False, input_formats=time_formats)
+    end_date = DateField(help_text="Optional, leave blank if it is a single day event", required=False, input_formats=date_formats)
+    end_time = TimeField(help_text="Optional", required=False, input_formats=time_formats)
     class Meta:
         model = Event
         exclude = ('slug')
