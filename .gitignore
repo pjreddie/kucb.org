@@ -16,6 +16,7 @@ public/media/js/tiny_mce
 public/media/personal
 public/media/jobposting
 public/media/img
+public/media/audio
 
 # Settings
 kucb/settings.py
