@@ -7,14 +7,20 @@ def undohtml(html):
 files = {}
 inf = open("crawl/full.txt").read().split('\n')
 for i in range(0,len(inf)-1,3):
-    print inf[i]
     files[undohtml(inf[i]).strip()] = undohtml(inf[i+1]).split("/")[-1].strip()
 
-print files
+articles = Article.objects.all()
+for art in articles:
+    art.title = art.title.strip()
+    art.save()
 
 for entry in files:
     try:
-        art = Article.objects.get(title=entry)
-        art.part_1.save(art.slug+".mp3", File(open("crawl/"+files[entry])))
+        arts = Article.objects.filter(title=entry)
+        if len(arts)>1:
+            for art in arts:
+                print art.title, art.pub_date
+        for art in arts:
+            art.part_1.save(art.slug+".mp3", File(open("crawl/"+files[entry])))
     except:
         print "Couldn't find:", entry
