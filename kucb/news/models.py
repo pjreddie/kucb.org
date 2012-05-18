@@ -106,3 +106,5 @@ class Comment(models.Model):
     text = models.TextField(max_length=1000)
     date = models.DateTimeField()
     parent = models.ForeignKey(Article, related_name="comments")
+    def __unicode__(self):
+        return self.author + " commenting on " + self.parent.title
