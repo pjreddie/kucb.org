@@ -41,6 +41,13 @@ class StockPhoto(models.Model):
     def __unicode__(self):
         return self.title
 
+class File(models.Model):
+    upload = models.FileField(upload_to="files")
+    date = models.DateTimeField(auto_now_add = True)
+    def __unicode__(self):
+        return self.upload.url
+
+
 class Article(models.Model):
     title = models.CharField(max_length = 500)
     author = models.ForeignKey(Bio, blank=True, null=True, on_delete=models.SET_NULL, related_name="articles")

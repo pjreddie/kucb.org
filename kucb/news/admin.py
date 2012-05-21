@@ -1,4 +1,4 @@
-from news.models import Article, Category, RSSHeadline, StockPhoto, Comment
+from news.models import Article, Category, RSSHeadline, StockPhoto, Comment, File
 from django.db import models
 from django.forms.widgets import TextInput
 from django.contrib import admin
@@ -16,6 +16,14 @@ class CommentInline(admin.TabularInline):
     model=Comment
     extra=0
     readonly_fields=('author','mail','text','date','parent')
+
+class FileAdmin(admin.ModelAdmin):
+    def upload_url(self, upload):
+        return upload.upload.url
+    list_display = ('upload_url','date')
+    ordering = ('-date',)
+    readonly_fields = ('upload_url', )
+    
 
 class ArticleAdmin(admin.ModelAdmin):
     date_hierarchy='pub_date'
@@ -47,4 +55,5 @@ admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category)
 admin.site.register(RSSHeadline)
 admin.site.register(StockPhoto)
+admin.site.register(File, FileAdmin)
 admin.site.register(Comment, CommentAdmin)

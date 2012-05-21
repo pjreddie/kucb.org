@@ -17,6 +17,7 @@ public/media/personal
 public/media/jobposting
 public/media/img
 public/media/audio
+public/media/files
 
 # Settings
 kucb/settings.py
