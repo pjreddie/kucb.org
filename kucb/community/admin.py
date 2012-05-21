@@ -6,8 +6,8 @@ class BlotAdmin(admin.ModelAdmin):
     ordering = ('-date','kind')
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    ordering = ('-start_date','name')
+    list_display = ('name','start_date','end_date')
+    ordering = ('start_date','name')
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(Personal)
