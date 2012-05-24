@@ -47,6 +47,8 @@ class Program(models.Model):
     producer_name = models.CharField(help_text='Optional, if not a KUCB person', blank=True, max_length=100)
     description = tinymce_models.HTMLField()
     link = models.CharField(max_length=200, blank=True)
+    class Meta:
+        ordering = ['title']
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
