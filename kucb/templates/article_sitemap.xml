@@ -9,7 +9,7 @@
 <priority>.5</priority>
 <news:news>
 <news:publication>
-<news:name>Unalaska Community Broadcasting</news:name>
+<news:name>KUCB</news:name>
 <news:language>en</news:language>
 </news:publication>
 <news:title>{{ article.title }}</news:title>
