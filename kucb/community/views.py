@@ -46,7 +46,7 @@ def community(request):
     if len(classifieds) >= 5:
         classifieds = random.sample(classifieds, 5)
     blots = random.sample(Blot.objects.all().order_by('-date')[:40], 4)
-    events = Event.objects.all().order_by('start_date')[:7]
+    events = Event.objects.filter(end_date__isnull = True).order_by('start_date')[:7]
     contents = Content.objects.all()
     return render_to_response('community.html',{'classifieds':classifieds,'blots':blots,'events':events, 'contents':contents})
 

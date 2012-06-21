@@ -20,7 +20,7 @@ def index(request):
     currdate = datetime.datetime.now()
     rangedate = currdate - datetime.timedelta(weeks=2)
     blots = random.sample(Blot.objects.all().order_by('-date')[:40], 4)
-    events = Event.objects.all().order_by('start_date')[:7]
+    events = Event.objects.filter(end_date__isnull = True).order_by('start_date')[:7]
     feed = RSSHeadline.objects.all()[:7]
     articles = []
     announcements = Announcement.objects.filter(active=True)
