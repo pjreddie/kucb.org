@@ -1,6 +1,8 @@
 <div class=blot>
+{% if blot.kind %}
 <span class="headline small">{{ blot.kind }}</span>
 <br />
+{% endif %}
 <span class=date>{{ blot.date|date:"l d F Y, P" }}</span>
 <br />
 <span class=details>{{ blot.details }}</span>
