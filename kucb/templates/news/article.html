@@ -125,7 +125,7 @@
         {% for comment in comments %}
             <div class=comment>
             <p class=date>{{ comment.author }} on {{ comment.date|date:"l, F d Y" }}:</p>
-            <p class=copy>{{ comment.text }}</p>
+            <p class=copy>{{ comment.text|linebreaks }}</p>
             </div>
         {% endfor %}
         {% endif %}
