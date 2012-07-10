@@ -41,7 +41,7 @@ def index(request):
     except:
         pass
     if len(articles)<3:
-        others = Article.objects.all().order_by('-pub_date')[:3]
+        others = Article.objects.filter(visible = True).order_by('-pub_date')[:3]
         articles += [n for n in others if n not in articles]
         articles = articles[:3]
     return render_to_response('index.html', {'announcements':announcements,'articles':articles, 'blots':blots, "events":events, "feed":feed, "editor":editor})
@@ -49,7 +49,7 @@ def index(request):
 def category(request, slug):
     editor = request.user.is_authenticated() and request.user.is_staff
     category = Category.objects.get(slug = slug)
-    article_list = Article.objects.filter(category=category).order_by('-pub_date')
+    article_list = Article.objects.filter(category=category).filter(visible=True).order_by('-pub_date')
     categories = Category.objects.all().order_by('name')
     
     paginator = Paginator(article_list, 9)
@@ -68,7 +68,7 @@ def category(request, slug):
 
 def news(request):
     editor = request.user.is_authenticated() and request.user.is_staff
-    article_list = Article.objects.all().order_by('-pub_date')
+    article_list = Article.objects.filter(visible=True).order_by('-pub_date')
     categories = Category.objects.all().order_by('name')
     
     paginator = Paginator(article_list, 9)

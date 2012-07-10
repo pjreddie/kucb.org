@@ -12,7 +12,7 @@ def about(request):
 
 def profile(request, slug):
     bio = get_object_or_404(Bio, slug=slug)
-    articles = bio.articles.all().order_by('-pub_date')[:10]
+    articles = bio.articles.filter(visible=True).order_by('-pub_date')[:10]
     editor = request.user.is_authenticated() and request.user.is_staff
     return render(request, 'profile.html', {'bio':bio, 'articles':articles, 'editor':editor})
 
