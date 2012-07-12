@@ -27,8 +27,8 @@ class UploadFileForm(forms.Form):
     file  = forms.FileField()
 
 def classifieds(request):
-    personals = Personal.objects.all()
-    jobs = JobPosting.objects.all()
+    personals = Personal.objects.all().order_by('-id')
+    jobs = JobPosting.objects.all().order_by('-id')
     return render_to_response('classifieds.html',{'personals':personals, 'jobs':jobs})
 
 def upload_blotter(request):
