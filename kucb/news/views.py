@@ -26,17 +26,17 @@ def index(request):
     announcements = Announcement.objects.filter(active=True)
     editor = request.user.is_authenticated() and request.user.is_staff
     try:
-        first = Article.objects.get(first=True)
+        first = Article.objects.filter(active=True).get(first=True)
         articles.append(first)
     except:
         pass
     try:
-        second = Article.objects.get(second=True)
+        second = Article.objects.filter(active=True).get(second=True)
         articles.append(second)
     except:
         pass
     try:
-        third = Article.objects.get(third=True)
+        third = Article.objects.filter(active=True).get(third=True)
         articles.append(third)
     except:
         pass
@@ -94,7 +94,7 @@ class CommentForm(ModelForm):
 
 
 def article(request, slug):
-    article = Article.objects.get(slug=slug)
+    article = Article.objects.filter(active=True).get(slug=slug)
     editor = request.user.is_authenticated() and request.user.is_staff
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
