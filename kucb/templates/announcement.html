@@ -1,15 +1,15 @@
 {% load thumbnail %}
 <div class=content>
-{% if content.image %}
-    <img class = img src={{ content.image|thumbnail }}></img>
-{% endif %}
-<p class=logo>{{ content.title }}</span>
+<p class=logo>{{ content.title }}</p>
 
 {% if content.pub_date %}
 <span class=date>{{ content.pub_date|date:"l d F Y" }}</span>
 {% endif %}
 
 <div class = copy>
+{% if content.image %}
+    <img class = img src={{ content.image|thumbnail }}></img>
+{% endif %}
 
     {{ content.text|safe }} 
 </div>
