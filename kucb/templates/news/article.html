@@ -1,5 +1,18 @@
 {% load article_render %}
 {% load thumbnail %}
+
+<script type="text/javascript">
+<!--
+function toggle(id) {
+	var e = document.getElementById(id);
+	if(e.style.display == 'none')
+		e.style.display = 'block';
+	else
+		e.style.display = 'none';
+}
+//-->
+</script>
+
 {% if article %}
     <div class ="article {{ type }}">
         <p class=headline >
@@ -119,6 +132,7 @@
     </div>
     {% if type == "full" %}
     <hr />
+
     <div id=comments>
         {% if comments|length %}
         <p class="logo">afterthoughts</p>
@@ -132,6 +146,27 @@
         <form id="form" action="./#form" method="post">{% csrf_token %}
         <fieldset>
         <legend class="headline" id=legend>Thoughts?</legend>
+		<div id=policy>
+		<p class="date right" onclick="toggle('guidelines');" style="cursor:pointer;">comment policy</p>
+		<div class=break></div>
+		<div id=guidelines style="display:none; font-size:.75em;">
+		<h3>Community Discussion Rules</h3>
+		<p>The following text serves as the official discussion policy for users of
+		KUCB.org's social networking tools. If you break them, we will delete your
+		comments.  
+		</p>
+		<ul>
+
+		<li>Use Respect. Focus your remarks on positions, not personalities. No personal attacks, name calling, libel, defamation, etc.  And under no circumstances should you post anything that could be taken as threatening, harassing, bullying, obscene, pornographic, sexist or racist.</li>
+		<li>Don't use obscenities.   We're not going to list the words we object to; you know what they are. Remember, this is a public forum and we want everyone to feel comfortable participating.</li>
+		<li>Stay on topic.</li>
+		<li>No advertising, promotion, recruiting, campaigning, lobbying, soliciting or proselytizing.</li>
+		<li>Don't Gossip.  We appreciate the news tips members of the public send us. However, we will not publicize rumors, allegations, conspiracy theories and other information which we know to be false or unsubstantiated.</li>
+		<li>Be yourself. Don't post anything on the site posing as someone else.</li>
+		</ul>
+		</div>
+
+		</div>
         {{ form.author.errors }}
         <label for="id_author">Your Name:</label>
         <br />
@@ -154,4 +189,5 @@
         </form>
     </div>
     {% endif %}
+
 {% endif %}
