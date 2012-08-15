@@ -9,6 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm, DateField, TimeField
 import random
 import itertools
+import datetime
 
 date_formats = ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', '%b %d %Y', '%b %d, %Y', '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y','%d %B %Y', '%d %B, %Y']
 time_formats = ["%H:%M","%H","%I%p","%I %p", "%I:%M%p", "%I:%M %p"]
@@ -43,10 +44,11 @@ def upload_blotter(request):
 
 def community(request):
     classifieds = list(itertools.chain(Personal.objects.all(),JobPosting.objects.all()))
+    currdate = datetime.date.today()
     if len(classifieds) >= 5:
         classifieds = random.sample(classifieds, 5)
     blots = random.sample(Blot.objects.all().order_by('-date')[:40], 4)
-    events = Event.objects.filter(end_date__isnull = True).order_by('start_date')[:7]
+    events = Event.objects.filter(start_date__gte = currdate).order_by('start_date')[:7]
     contents = Content.objects.all()
     return render_to_response('community.html',{'classifieds':classifieds,'blots':blots,'events':events, 'contents':contents})
 
