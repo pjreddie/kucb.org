@@ -1,4 +1,4 @@
-from about.models import Announcement, Bio, Content, Program, Schedule
+from kucb.about.models import Announcement, Bio, Content, Program, Schedule
 from django.contrib import admin
 
 class ScheduleAdmin(admin.ModelAdmin):

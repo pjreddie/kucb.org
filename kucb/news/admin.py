@@ -1,4 +1,4 @@
-from news.models import Article, Category, RSSHeadline, StockPhoto, Comment, File
+from kucb.news.models import Article, Category, RSSHeadline, StockPhoto, Comment, File
 from django.db import models
 from django.forms.widgets import TextInput
 from django.contrib import admin

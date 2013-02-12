@@ -21,4 +21,3 @@ public/media/files
 
 # Settings
 kucb/settings.py
-passenger_wsgi.py

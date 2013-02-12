@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from kucb.community.models import *
+from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django import forms
+from kucb.community.models import *
 from kucb.community.handle_upload import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm, DateField, TimeField
@@ -32,6 +33,7 @@ def classifieds(request):
     jobs = JobPosting.objects.all().order_by('-id')
     return render_to_response('classifieds.html',{'personals':personals, 'jobs':jobs})
 
+@login_required
 def upload_blotter(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
