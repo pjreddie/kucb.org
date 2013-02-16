@@ -157,6 +157,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'paste_remove_styles': 'true',
     'paste_remove_styles_if_webkit': 'true',
     'paste_strip_class_attributes': 'true',
+    'valid_elements': '*[*]',
 }
 
 # A sample logging configuration. The only tangible logging
