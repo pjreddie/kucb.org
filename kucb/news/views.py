@@ -19,7 +19,9 @@ signals.post_save.connect(cache_clear, dispatch_uid="1")
 def index(request):
     currdate = datetime.date.today()
     events = Event.objects.filter(start_date__gte = currdate).order_by('start_date')[:7]
-    blots = random.sample(Blot.objects.all().order_by('-date')[:40], 4)
+    blots = Blot.objects.all().order_by('-date')[:40]
+    if(len(blots) > 3):
+        blots = random.sample(blots, 4)
     feed = RSSHeadline.objects.all()[:7]
     articles = []
     announcements = Announcement.objects.filter(active=True)

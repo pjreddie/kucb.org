@@ -20,4 +20,4 @@ public/media/audio
 public/media/files
 
 # Settings
-kucb/settings.py
+kucb/local_settings.py
