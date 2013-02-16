@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 import random
 from django.core.cache import cache
 from kucb.about.models import Bio
+from kucb.news.templatetags.thumbnail import thumbnail
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -77,6 +78,18 @@ class Article(models.Model):
 
     def __unicode__(self):
         return self.title
+    
+    def image_url(self):
+        if self.stock_image:
+            image = self.stock_image.image
+        else:
+            image = self.image
+        if not image:
+            return ''
+        elif self.big_image:
+            return image.url
+        else:
+            return thumbnail(image)
 
     def save(self, *args, **kwargs):
         if not self.author and not self.author_name:

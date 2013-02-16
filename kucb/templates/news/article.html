@@ -89,18 +89,10 @@ function toggle(id) {
         {% endif %}
 
         <div class = copy>
-        {% if article.stock_image and type != "teaser" %}
-            <div class="img {% if article.big_image %}big{% endif %}">
-            <img class=article_img src={{ article.stock_image.image|thumbnail }}></img>
-            {% if article.image_caption %}
-            <br />
-            <span class=caption>{{ article.image_caption }}</span>
-            {% endif %}
-            </div>
-        {% else %}
-            {% if article.image and type != "teaser" %}
+        {% if type != "teaser" %}
+            {% if article.stock_image or article.image %}
                 <div class="img {% if article.big_image %}big{% endif %}">
-                <img class=article_img src={{ article.image|thumbnail }}></img>
+                    <img class=article_img src={{ article.image_url }}></img>
                 {% if article.image_caption %}
                 <br />
                 <span class=caption>{{ article.image_caption }}</span>
