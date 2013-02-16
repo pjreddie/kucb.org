@@ -90,7 +90,7 @@ function toggle(id) {
 
         <div class = copy>
         {% if article.stock_image and type != "teaser" %}
-            <div class = img>
+            <div class="img {% if article.big_image %}big{% endif %}">
             <img class=article_img src={{ article.stock_image.image|thumbnail }}></img>
             {% if article.image_caption %}
             <br />
@@ -99,7 +99,7 @@ function toggle(id) {
             </div>
         {% else %}
             {% if article.image and type != "teaser" %}
-                <div class=img>
+                <div class="img {% if article.big_image %}big{% endif %}">
                 <img class=article_img src={{ article.image|thumbnail }}></img>
                 {% if article.image_caption %}
                 <br />

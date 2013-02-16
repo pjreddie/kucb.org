@@ -61,6 +61,7 @@ class Article(models.Model):
     stock_image = models.ForeignKey(StockPhoto, blank=True, null=True)
     image = models.FileField(upload_to="img", blank=True)
     image_caption = models.CharField(max_length=500, blank=True, default="")
+    big_image = models.BooleanField(default=False)
     part_1 = models.FileField(upload_to="audio", blank=True)
     part_2 = models.FileField(upload_to="audio", blank=True)
     part_3 = models.FileField(upload_to="audio", blank=True)

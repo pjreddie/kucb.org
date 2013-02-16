@@ -16,6 +16,9 @@
     margin-top:2em;
     overflow:hidden;
 }
+.img.big{
+    max-width:100%;
+}
 .teaser .content{
     font-size:.7em;
 }

@@ -35,7 +35,7 @@ class ArticleAdmin(admin.ModelAdmin):
             'fields': ('title','author','author_name','category','text')
         }),
         ('Image',{
-            'fields': ('stock_image', 'image', 'image_caption')
+            'fields': ('stock_image', 'image', 'image_caption', 'big_image')
         }),
         ('Audio',{
             'fields': ('part_1','part_2','part_3','part_4',)
