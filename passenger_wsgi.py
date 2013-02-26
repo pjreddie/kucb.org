@@ -8,7 +8,7 @@ site.addsitedir('/envs/kucb/lib/python2.7/site-packages/')
 site.addsitedir('/home/kucb/env/lib/python2.6/site-packages/')
 
 sys.path.append('/home/kucb/kucb.org/')
-sys.path.append('/Users/pjreddie/kucb.org/')
+sys.path.append('/Users/pjreddie/Documents/Sites/kucb.org/')
 
 sys.path = sys.path + oldpath
 
