@@ -92,7 +92,7 @@ function toggle(id) {
         {% if type != "teaser" %}
             {% if article.stock_image or article.image %}
                 <div class="img {% if article.big_image %}big{% endif %}">
-                    <img class=article_img src={{ article.image_url }}></img>
+                    <a target="_blank" href="{{ article.full_image_url }}"><img class=article_img src={{ article.image_url }}></img></a>
                 {% if article.image_caption %}
                 <br />
                 <span class=caption>{{ article.image_caption }}</span>

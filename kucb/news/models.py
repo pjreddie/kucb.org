@@ -91,6 +91,15 @@ class Article(models.Model):
         else:
             return thumbnail(image)
 
+    def full_image_url(self):
+        if self.stock_image:
+            image = self.stock_image.image
+        else:
+            image = self.image
+        if not image:
+            return ''
+        return image.url
+
     def save(self, *args, **kwargs):
         if not self.author and not self.author_name:
             self.author_name = "KUCB News"
