@@ -24,6 +24,9 @@
 <h1 class=logo>the people</h1>
 {% for bio in bios %}
     {% include "bio.html" %}
+    {% if not forloop.last %}
+        <hr />
+    {% endif %}
 {% endfor %}
 </div>
 <div class=break></div>
