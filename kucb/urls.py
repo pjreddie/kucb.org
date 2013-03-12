@@ -40,9 +40,11 @@ urlpatterns = patterns('',
     url(r'^blotter/upload/$', kucb.community.views.upload_blotter),
 
     url(r'^about/$', kucb.about.views.about),
+    url(r'^about/people/$', kucb.about.views.people),
     url(r'^about/profile/(?P<slug>[-\w]+)/$', kucb.about.views.profile),
     url(r'^about/program/(?P<slug>[-\w]+)/$', kucb.about.views.program),
     url(r'^about/schedule/$', kucb.about.views.schedule),
+    url(r'^about/(?P<slug>[-\w]+)/$', kucb.about.views.about),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),

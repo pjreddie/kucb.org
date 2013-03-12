@@ -21,9 +21,10 @@
 </ul>
 </div>
 <div id=contents>
-{% with selected as content %}
-    {% include "content.html" %}
-{% endwith %}
+<h1 class=logo>the people</h1>
+{% for bio in bios %}
+    {% include "bio.html" %}
+{% endfor %}
 </div>
 <div class=break></div>
 {% endblock %}

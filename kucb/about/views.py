@@ -5,10 +5,19 @@ from django.template import RequestContext
 from kucb.about.models import Announcement, Bio, Content, Program, Schedule
 from django.contrib.auth.models import User
 
-def about(request):
+def about(request, slug=None):
+    contents = Content.objects.all()
+    if slug:
+        selected = get_object_or_404(Content, slug=slug)
+    elif contents:
+        selected = contents[0]
+    return render_to_response('about.html', {'contents':contents, 'selected': selected})
+
+def people(request, slug=None):
     contents = Content.objects.all()
     bios = Bio.objects.filter(visible=True).order_by('name')   
-    return render_to_response('about.html', {'bios':bios,'contents':contents})
+    selected = {'slug':'people'}
+    return render_to_response('about_people.html', {'bios':bios,'contents':contents, 'selected': selected})
 
 def profile(request, slug):
     bio = get_object_or_404(Bio, slug=slug)

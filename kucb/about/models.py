@@ -7,8 +7,13 @@ class Content(models.Model):
     title = models.CharField(max_length=500)
     text = tinymce_models.HTMLField()
     image = models.FileField(upload_to="img", blank=True)
+    slug = models.SlugField(blank=True, null=True)
     def __unicode__(self):
         return self.title
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Content, self).save(*args, **kwargs)
 
 class Bio(models.Model):
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name="bio")

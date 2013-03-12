@@ -6,9 +6,7 @@
     color:#0087ff;
 }
 .bio{
-    max-width:40em;
-    margin-left:auto;
-    margin-right:auto;
+    max-width:25em;
 }
 .bio .img{
     max-width:50%;
@@ -29,3 +27,22 @@
     margin-left:auto;
     margin-right:auto;
 }
+#category_list{
+    list-style:none;
+    padding:0em;
+    margin:0em;
+}
+.category{
+    padding:0em .5em;
+    line-height:1.5em;
+}
+#sidebar{
+    float:left;
+    max-width:15em;
+    margin-right:1em;
+}
+#contents{
+    float:left;
+    width:30em;
+}
+
