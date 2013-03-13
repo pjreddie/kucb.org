@@ -3,7 +3,12 @@ import datetime
 from kucb.community.models import *
 
 def ununicode(adata):
-    udata = adata.decode('utf-8')
+    try:
+        udata = adata.decode('utf-8')
+    except:
+        udata = adata.decode('latin-1')
+    udata = udata.replace(u'\xd5', "'")
+    udata = udata.replace(u'\xd0', '-')
     udata = udata.replace(u'\u2013', '-')
     udata = udata.replace(u'\u2019', "'")
     udata = udata.replace(u'\u2018', "'")
@@ -18,16 +23,19 @@ def handle_uploaded_blotter(f):
     for chunk in f.chunks():
         destination.write(chunk)
     destination.close()
-    uploaded = open('blotter.txt','rb')
+    uploaded = open('blotter.txt','rbU')
     blots = []
     for line in csv.reader(uploaded):
         line = [ununicode(x) for x in line]
-        if line[0]:
+        if line and line[0]:
             line[0] = line[0].strip()
             line[1] = line[1].strip()
             line[2] = line[2].strip()
+            line[2] = '0'*(4-len(line[2])) + line[2]
+
             line[3] = line[3].strip()
             datestr = " ".join(line[0:3])
+            print datestr
             date = datetime.datetime.strptime(datestr, "%m/%d/%y %a %H%M")
             dts = line[3].split("-")
             kind = dts[0].strip()
