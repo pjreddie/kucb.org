@@ -30,6 +30,10 @@ def handle_uploaded_blotter(f):
         if line and line[0]:
             line[0] = line[0].strip()
             line[1] = line[1].strip()
+            if line[1] == "Tues":
+                line[1] = "Tue"
+            if line[1] == "Thurs":
+                line[1] = "Thu"
             line[2] = line[2].strip()
             line[2] = '0'*(4-len(line[2])) + line[2]
 
