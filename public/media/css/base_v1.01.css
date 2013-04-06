@@ -1,3 +1,12 @@
+.search{
+    width:20em;
+    position:absolute;
+    top:9em;
+    right:2em;
+}
+.search .gsc-control-cse{
+    padding:0;
+}
 .base_content{
     width:50em;
     margin-left:auto;
@@ -83,7 +92,7 @@ p.logo{
 #islands{
     position:absolute;
     left:0;
-    top:50%;
+    top:5em;
 }
 #header{
     padding:2em;
