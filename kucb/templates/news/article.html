@@ -41,50 +41,56 @@ function toggle(id) {
                 AudioPlayer.embed("{{ article.slug }}", {soundFile: "{{ article.part_1.url }}"});  
             </script>
         {% else %}
+            <p style="vertical-align:top;">
             {% if article.part_1 %}
-            <p id="{{ article.slug }}">Part 1:
+            Part 1:&nbsp;<span id="{{ article.slug }}">
             <audio controls="controls">
             <source src="{{ article.part_1.url }}" type="audio/mpeg" />
         Your browser doesn't support audio. Download the audio <a href="{{ article.part_1.url }}">here</a>
             </audio>
-            </p>  
+            </span>  
+            <br />  
             <script type="text/javascript">  
                 AudioPlayer.embed("{{ article.slug }}", {soundFile: "{{ article.part_1.url }}"});  
             </script>
             {% endif %}
             {% if article.part_2 %}
-            <p id="{{ article.slug }}_2">Part 2:
+            Part 2:&nbsp;<span id="{{ article.slug }}_2">
             <audio controls="controls">
             <source src="{{ article.part_2.url }}" type="audio/mpeg" />
         Your browser doesn't support audio. Download the audio <a href="{{ article.part_2.url }}">here</a>
             </audio>
-            </p>  
+            </span>
+            <br />  
             <script type="text/javascript">  
                 AudioPlayer.embed("{{ article.slug }}_2", {soundFile: "{{ article.part_2.url }}"});  
             </script>
             {% endif %}
             {% if article.part_3 %}
-            <p id="{{ article.slug }}_3">Part 3:
+            Part 3:&nbsp;<span id="{{ article.slug }}_3">
             <audio controls="controls">
             <source src="{{ article.part_3.url }}" type="audio/mpeg" />
         Your browser doesn't support audio. Download the audio <a href="{{ article.part_3.url }}">here</a>
             </audio>
-            </p>  
+            </span>
+            <br />  
             <script type="text/javascript">  
                 AudioPlayer.embed("{{ article.slug }}_3", {soundFile: "{{ article.part_3.url }}"});  
             </script>
             {% endif %}
             {% if article.part_4 %}
-            <p id="{{ article.slug }}_4">Part 4:
+            Part 4:&nbsp;<span id="{{ article.slug }}_4">
             <audio controls="controls">
             <source src="{{ article.part_4.url }}" type="audio/mpeg" />
         Your browser doesn't support audio. Download the audio <a href="{{ article.part_4.url }}">here</a>
             </audio>
-            </p>  
+            </span>
+            <br />  
             <script type="text/javascript">  
                 AudioPlayer.embed("{{ article.slug }}_4", {soundFile: "{{ article.part_4.url }}"});  
             </script>
             {% endif %}
+            </p>
 
         {% endif %}
 
