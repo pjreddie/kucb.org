@@ -26,26 +26,28 @@ def handle_uploaded_blotter(f):
     uploaded = open('blotter.txt','rbU')
     blots = []
     for line in csv.reader(uploaded):
-        line = [ununicode(x) for x in line]
-        if line and line[0]:
-            line[0] = line[0].strip()
-            line[1] = line[1].strip()
-            if line[1] == "Tues":
-                line[1] = "Tue"
-            if line[1] == "Thurs":
-                line[1] = "Thu"
-            line[2] = line[2].strip()
-            line[2] = '0'*(4-len(line[2])) + line[2]
+        try:
+            line = [ununicode(x) for x in line]
+            if line and line[0]:
+                line[0] = line[0].strip()
+                line[1] = line[1].strip()
+                if line[1] == "Tues":
+                    line[1] = "Tue"
+                if line[1] == "Thurs":
+                    line[1] = "Thu"
+                line[2] = line[2].strip()
+                line[2] = '0'*(4-len(line[2])) + line[2]
 
-            line[3] = line[3].strip()
-            datestr = " ".join(line[0:3])
-            print datestr
-            date = datetime.datetime.strptime(datestr, "%m/%d/%y %a %H%M")
-            dts = line[3].split("-")
-            kind = dts[0].strip()
-            details = "-".join(dts[1:]).strip()
-            blot = Blot(date = date, kind = kind, details = details)
-            blots.append(blot)
+                line[3] = line[3].strip()
+                datestr = " ".join(line[0:3])
+                date = datetime.datetime.strptime(datestr, "%m/%d/%y %a %H%M")
+                dts = line[3].split("-")
+                kind = dts[0].strip()
+                details = "-".join(dts[1:]).strip()
+                blot = Blot(date = date, kind = kind, details = details)
+                blots.append(blot)
+        except Exception as e:
+            raise Exception("Error processing line:\n    %s\nError text:\n    %s"%(line, str(e)))
     for blot in blots:
         blot.save()
 

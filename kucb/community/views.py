@@ -38,8 +38,11 @@ def upload_blotter(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_blotter(request.FILES['file'])
-            return HttpResponseRedirect('/')
+            try:
+                handle_uploaded_blotter(request.FILES['file'])
+                return HttpResponseRedirect('/')
+            except Exception as e:
+                return render_to_response('500.html', {'error':e})
     else:
         form = UploadFileForm()
     return render_to_response('upload.html', {'form': form}, context_instance=RequestContext(request))
