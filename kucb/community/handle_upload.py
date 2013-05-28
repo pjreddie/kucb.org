@@ -44,6 +44,9 @@ def handle_uploaded_blotter(f):
                 dts = line[3].split("-")
                 kind = dts[0].strip()
                 details = "-".join(dts[1:]).strip()
+                duplicates = Blot.objects.filter(date = date, kind = kind, details = details)
+                if duplicates:
+                    raise Exception("Possible duplicate found, aborting upload.")
                 blot = Blot(date = date, kind = kind, details = details)
                 blots.append(blot)
         except Exception as e:
