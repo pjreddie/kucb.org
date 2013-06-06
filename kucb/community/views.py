@@ -71,7 +71,7 @@ def events(request, year = None, month = None ):
     padding, num_days  = calendar.monthrange(first.year, first.month)
     last = datetime.date(date.year, date.month, num_days)
 
-    events = Event.objects.filter(start_date__gte = first, start_date__lte = last).order_by('start_date')[:7]
+    events = Event.objects.filter(start_date__gte = first, start_date__lte = last).order_by('start_date')
     day_range = [first + datetime.timedelta(days = x) for x in range(0,num_days)]
     days = [{'date':day, 'day':day.day, 'events':[]} for day in day_range]
     for event in events:
