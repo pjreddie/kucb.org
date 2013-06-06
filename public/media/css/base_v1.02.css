@@ -169,6 +169,10 @@ p.logo{
 .event .date{
     color:#aa5f22;
 }
+.button a:hover {
+    color:#00f;
+    font-style:italic;
+}
 
 a img{
     border-style:none;
@@ -239,4 +243,26 @@ h1{
     text-align:center;
     font-size:8px;
     line-height:10px;
+}
+.pagination{
+    font-style:italic;
+    font-size:.7em;
+}
+.button.right{
+    float:right;
+    margin-left:.5em;
+}
+.button a:hover {
+    color:#00f;
+}
+.button.left{
+    float:left;
+    margin-right:.5em;
+}
+.page{
+    text-align:center;
+    width:6em;
+    margin-left:auto;
+    margin-right:auto;
+    color:#7e31b5;
 }

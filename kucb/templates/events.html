@@ -1,16 +1,58 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href= "/media/css/community.css" />
+<link rel="stylesheet" href= "/media/css/calendar.css" />
 {% endblock %}
 
 {% block title %}Events{% endblock %}
 
 {% block content %}
-<span class=logo><a href="/community/events/">events</a></span><span class="logo add"><a href="/community/add/event/">add event</a></span>
+<span class="logo">{{ date|date:"F Y" }}</span>
+<span class="logo right"><a href="/community/add/event/">add event</a></span>
 <div class=break></div>
 <hr />
-<div class=thin>
-{% include "event_list.html" with type="full" %}
+<div class="pagination">
+<div class="logo small button left"><a href="{% url events year=prev.year month=prev.month %}">{{ prev|date:"F" }}</a></div>
+<div class="logo small button right"><a href="{% url events year=next.year month=next.month %}">{{ next|date:"F" }}</a></div>
+<div class=break></div>
 </div>
+<hr/>
+<table id=events_cal>
+    <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+    </tr>
+    <tr>
+        {% for day in days %}
+            <td class="{{ day.today }}">
+            <div class="day">
+                <div class=day_num>
+                {{ day.day }}
+                </div>
+                {% for event in day.events %}
+                    <div class=event>
+                        <span class=date>{% if event.start_time %}{{ event.start_time|time:"P" }}: {% endif %}</span>
+                        <a href="/community/events/{{ event.slug }}">{{ event.name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+            </td>
+            {% if forloop.counter|divisibleby:7 %}
+                </tr>
+                <tr>
+            {% endif %}
+        {% endfor %}
+    </tr>
+</table>
+{% if ongoing %}
+<hr />
+<p class="logo">currently ongoing</p>
+{% include "event_list.html" with events=ongoing %}
+<div class=break></div>
+{% endif %}
 {% endblock %}

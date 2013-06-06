@@ -33,6 +33,7 @@ urlpatterns = patterns('',
 
     url(r'^community/$', kucb.community.views.community),
     url(r'^community/events/$', kucb.community.views.events),
+    url(r'^community/events/(?P<year>\d+)/(?P<month>\d{1,2})/$', kucb.community.views.events, name='events'),
     url(r'^community/classifieds/$', kucb.community.views.classifieds),
     url(r'^community/add/event/$', kucb.community.views.add_event),
     url(r'^community/events/(?P<slug>[-\w]+)/$', kucb.community.views.event),

@@ -2,6 +2,8 @@
     font-size:.6em;
     border-spacing:0em;
     width:100%;
+    border-right:1px solid #7e31b5;
+    border-bottom:1px solid #7e31b5;
 }
 .program, .blank{
     vertical-align:top;
@@ -9,7 +11,6 @@
 }
 .program{
     border-top:1px solid #aaa;
-    border-radius:1em 1em 0em 0em;
 }
 td.time{
     border-left:none;

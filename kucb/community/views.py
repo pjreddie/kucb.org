@@ -11,6 +11,8 @@ from django.forms import ModelForm, DateField, TimeField
 import random
 import itertools
 import datetime
+import calendar
+calendar.setfirstweekday(calendar.SUNDAY)
 
 date_formats = ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y', '%b %d %Y', '%b %d, %Y', '%d %b %Y', '%d %b, %Y', '%B %d %Y', '%B %d, %Y','%d %B %Y', '%d %B, %Y']
 time_formats = ["%H:%M","%H","%I%p","%I %p", "%I:%M%p", "%I:%M %p"]
@@ -57,9 +59,33 @@ def community(request):
     contents = Content.objects.all()
     return render_to_response('community.html',{'classifieds':classifieds,'blots':blots,'events':events, 'contents':contents})
 
-def events(request):
-    events = Event.objects.all().order_by('start_date')
-    return render_to_response('events.html',{'events':events})
+def events(request, year = None, month = None ):
+    date = None
+    if year and month:
+        date = datetime.date(int(year), int(month), 1)
+    ongoing = []
+    today = datetime.date.today()
+    if not date:
+        date = today
+    first = datetime.date(date.year, date.month, 1)
+    padding, num_days  = calendar.monthrange(first.year, first.month)
+    last = datetime.date(date.year, date.month, num_days)
+
+    events = Event.objects.filter(start_date__gte = first, start_date__lte = last).order_by('start_date')[:7]
+    day_range = [first + datetime.timedelta(days = x) for x in range(0,num_days)]
+    days = [{'date':day, 'day':day.day, 'events':[]} for day in day_range]
+    for event in events:
+        day = event.start_date.day
+        days[day-1]['events'].append(event)
+    if today.year == date.year and today.month == date.month:
+        days[today.day-1]['today'] = 'today'
+        ongoing = Event.objects.filter(start_date__lt = today, end_date__gte =today).order_by('start_date')
+    days = [{}]*padding + days
+    days = days + [{}]*(6-last.weekday())
+    prev_month = first - datetime.timedelta(days = 1)
+    next_month = last + datetime.timedelta(days = 1)
+
+    return render_to_response('events.html',{'date':date, 'days':days,'ongoing': ongoing, 'prev':prev_month, 'next':next_month})
 
 def blotter(request):
     blot_list = Blot.objects.all().order_by('-date')
@@ -78,8 +104,8 @@ def blotter(request):
     return render_to_response('blotter.html',{'page':blots})
 
 def event(request, slug):
-    event = [Event.objects.get(slug=slug)]
-    return render_to_response('events.html',{'events':event})
+    event = Event.objects.get(slug=slug)
+    return render_to_response('single_event.html',{'event':event})
 
 def add_event(request):
     if request.method == 'POST':
