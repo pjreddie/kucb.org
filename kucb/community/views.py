@@ -69,6 +69,7 @@ def events(request, year = None, month = None ):
         date = today
     first = datetime.date(date.year, date.month, 1)
     padding, num_days  = calendar.monthrange(first.year, first.month)
+    padding = (padding+1)%7
     last = datetime.date(date.year, date.month, num_days)
 
     events = Event.objects.filter(start_date__gte = first, start_date__lte = last).order_by('start_date')
@@ -81,7 +82,8 @@ def events(request, year = None, month = None ):
         days[today.day-1]['today'] = 'today'
         ongoing = Event.objects.filter(start_date__lt = today, end_date__gte =today).order_by('start_date')
     days = [{}]*padding + days
-    days = days + [{}]*(6-last.weekday())
+    end_padding = (7-len(days)%7)%7
+    days = days + [{}]*end_padding
     prev_month = first - datetime.timedelta(days = 1)
     next_month = last + datetime.timedelta(days = 1)
 
