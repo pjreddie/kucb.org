@@ -8,13 +8,7 @@ from kucb.community.models import Blot, Event
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm, Textarea
 import random
-from django.core.cache import cache
-from django.db.models import signals
 
-def cache_clear(sender, **kwards):
-    cache.clear()
-
-signals.post_save.connect(cache_clear, dispatch_uid="1")
 
 def index(request):
     currdate = datetime.date.today()

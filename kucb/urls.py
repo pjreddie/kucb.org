@@ -1,5 +1,4 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
 import kucb.news.views
 import kucb.community.views
