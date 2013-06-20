@@ -72,7 +72,7 @@ def events(request, year = None, month = None ):
     padding = (padding+1)%7
     last = datetime.date(date.year, date.month, num_days)
 
-    events = Event.objects.filter(start_date__gte = first, start_date__lte = last).order_by('start_date')
+    events = Event.objects.filter(start_date__gte = first, start_date__lte = last).order_by('start_date', 'start_time')
     day_range = [first + datetime.timedelta(days = x) for x in range(0,num_days)]
     days = [{'date':day, 'day':day.day, 'events':[]} for day in day_range]
     for event in events:
@@ -80,7 +80,7 @@ def events(request, year = None, month = None ):
         days[day-1]['events'].append(event)
     if today.year == date.year and today.month == date.month:
         days[today.day-1]['today'] = 'today'
-        ongoing = Event.objects.filter(start_date__lt = today, end_date__gte =today).order_by('start_date')
+        ongoing = Event.objects.filter(start_date__lt = today, end_date__gte =today).order_by('start_date', 'start_time')
     days = [{}]*padding + days
     end_padding = (7-len(days)%7)%7
     days = days + [{}]*end_padding
