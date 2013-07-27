@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect, render
 from kucb.news.models import Article, Category, RSSHeadline, Comment
 from kucb.about.models import Announcement
-from kucb.community.models import Blot, Event
+from kucb.community.models import Blot, Event, Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm, Textarea
 import random
@@ -20,6 +20,7 @@ def index(request):
     articles = []
     announcements = Announcement.objects.filter(active=True)
     editor = request.user.is_authenticated() and request.user.is_staff
+    posts = Post.objects.filter(visible = True, front_page=True).order_by('-pub_date')
     try:
         first = Article.objects.filter(visible=True).get(first=True)
         articles.append(first)
@@ -39,7 +40,7 @@ def index(request):
         others = Article.objects.filter(visible = True).order_by('-pub_date')[:3]
         articles += [n for n in others if n not in articles]
         articles = articles[:3]
-    return render_to_response('index.html', {'announcements':announcements,'articles':articles, 'blots':blots, "events":events, "feed":feed, "editor":editor})
+    return render_to_response('index.html', {'announcements':announcements,'articles':articles, 'blots':blots, "events":events, "feed":feed, "editor":editor, "posts":posts})
 
 def category(request, slug):
     editor = request.user.is_authenticated() and request.user.is_staff

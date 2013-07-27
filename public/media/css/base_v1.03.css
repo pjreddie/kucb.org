@@ -43,6 +43,12 @@ a:hover {
     text-decoration:underline;
 }
 
+.post .headline a{
+    color:#6A0FB2;
+}
+.post .headline a:hover {
+    color:#8412DD;
+}
 
 .logo a{
     color:black;
@@ -265,4 +271,21 @@ h1{
     margin-left:auto;
     margin-right:auto;
     color:#7e31b5;
+}
+#category_list{
+    list-style:none;
+    padding:0em;
+    margin:0em;
+}
+.category{
+    padding:0em .5em;
+    line-height:1.5em;
+}
+.subcategory_list{
+    list-style:none;
+    font-size:.75em;
+}
+.share{
+    cursor:pointer;
+    margin-left:.5em;
 }

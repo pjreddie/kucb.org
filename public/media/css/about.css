@@ -27,15 +27,6 @@
     margin-left:auto;
     margin-right:auto;
 }
-#category_list{
-    list-style:none;
-    padding:0em;
-    margin:0em;
-}
-.category{
-    padding:0em .5em;
-    line-height:1.5em;
-}
 #sidebar{
     float:left;
     max-width:15em;

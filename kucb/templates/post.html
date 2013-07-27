@@ -1,0 +1,120 @@
+{% load article_render %}
+{% load thumbnail %}
+
+<script type="text/javascript">
+<!--
+function toggle(id) {
+	var e = document.getElementById(id);
+	if(e.style.display == 'none')
+		e.style.display = 'block';
+	else
+		e.style.display = 'none';
+}
+//-->
+</script>
+
+{% if post %}
+    <div class ="post {{ type }}">
+        <p class=headline >
+        {% if type != "full" %}
+	    <a href="/community/post/{{ post.slug }}/">{{ post.title }}</a>
+	{% else %}
+	    {{ post.title }}
+	{% endif %}
+        </p>
+        
+        {% if post.author %}
+        <p class=byline>By <span class=author><a rel="author" href="{{ post.author.get_absolute_url }}">{{ post.author.name }}</a></span></p>
+        {% else %}
+        <p class=byline>By <span class=author>{{ post.author_name }}</span></p>
+        {% endif %}
+        {% if editor %}
+        <a href="/admin/community/post/{{ post.pk }}/"><span class="date right edit">edit</span></a>
+        {% endif %}
+        <p class=date>{{ post.pub_date|date:"l, F d Y" }}</p>
+
+        <div class = copy>
+        {% if type != "teaser" %}
+            {% if post.stock_image or post.image %}
+                <div class="img {% if post.big_image %}big{% endif %}">
+                    <a target="_blank" href="{{ post.full_image_url }}"><img class=article_img src={{ post.image_url }}></img></a>
+                {% if post.image_caption %}
+                <br />
+                <span class=caption>{{ post.image_caption }}</span>
+                {% endif %}
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {% if type == "full" %}
+            {{ post.text|safe }}
+        {% else %}
+                {% if post.teaser %}
+                    {{ post.teaser|safe }}
+                {% else %}
+                    {{ post.text|truncate_text:400|safe }}
+		{% endif %}
+	{% endif %}
+
+        </div>
+        <div class=break></div>
+    </div>
+    {% if type == "full" %}
+    <hr />
+
+    <div id=comments>
+        {% if comments|length %}
+        <p class="logo">afterthoughts</p>
+        {% for comment in comments %}
+            <div class=comment>
+            <p class=date>{{ comment.author }} on {{ comment.date|date:"l, F d Y" }}:</p>
+            <p class=copy>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% endfor %}
+        {% endif %}
+        <form id="form" action="./#form" method="post">{% csrf_token %}
+        <fieldset>
+        <legend class="headline" id=legend>Thoughts?</legend>
+		<div id=policy>
+		<p class="date right" onclick="toggle('guidelines');" style="cursor:pointer;">comment policy</p>
+		<div class=break></div>
+		<div id=guidelines style="display:none; font-size:.75em;">
+		<h3>Community Discussion Rules</h3>
+		<p>
+		These are the rules for using KUCB's comments section and social networking tools. If you break them, we reserve the right to delete your comments and block you from commenting in the future.
+		</p>
+		<ul>
+		<li>Use Respect. Focus your remarks on positions, not personalities. No personal attacks, name calling, libel, defamation, etc.  And under no circumstances should you post anything that could be taken as threatening, harassing, bullying, obscene, pornographic, sexist or racist.</li>
+		<li>Don't use obscenities.   We're not going to list the words we object to; you know what they are. Remember, this is a public forum and we want everyone to feel comfortable participating.</li>
+		<li>Stay on topic.</li>
+		<li>No advertising, promotion, recruiting, campaigning, lobbying, soliciting or proselytizing.</li>
+		<li>Don't Gossip.  We appreciate the news tips members of the public send us. However, we will not publicize rumors, allegations, conspiracy theories and other information which we know to be false or unsubstantiated.</li>
+		<li>Be yourself. Don't post anything on the site posing as someone else.</li>
+		</ul>
+		</div>
+
+		</div>
+        {{ form.author.errors }}
+        <label for="id_author">Your Name:</label>
+        <br />
+        {{ form.author }}        
+        <br />
+        {{ form.mail.errors }}
+        <div id=mail_input><label for="id_mail">Your Email (will not be posted):</label>
+        <br>
+        {{ form.mail }}
+        </div>
+        {{ form.text.errors }}
+        <div id=text_input><label for="id_text">Your Thought:</label>
+        <br>
+        {{ form.text }}
+        </div>
+        <div id=email_input><label for="id_email">Your Email (if you can read this, you should leave this field empty):</label><br><input id="id_email" type="text" name="email" maxlength="100"></input></div>
+        <br />
+        <input id=submit type="submit" value="Onward, to glory!">
+        </fieldset>
+        </form>
+    </div>
+    {% endif %}
+
+{% endif %}

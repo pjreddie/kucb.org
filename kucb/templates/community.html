@@ -8,13 +8,37 @@
 {% block title %}Community{% endblock %}
 
 {% block content %}
-<div class="main">
-{% for content in contents %}
-    {% include "content.html" %}
-{% endfor %}
+    <div class="main">
+    {% if page.object_list %}
+	<span class=logo>Talk of the Town</span>
+	{% if page.has_next or page.has_previous %}
+	    <hr />
+	    {% include "nav.html" %}
+	{% endif %}
+	<hr />
+	<div class="posts">
+	{% for post in page.object_list %}
+	    {% include "post.html" with type="short" %}
+	    {% if not forloop.last %}
+		<hr />
+	    {% endif %}
+	{% endfor %}
+	</div>
+	<div class=break></div>
+	{% if page.has_next or page.has_previous %}
+	    <hr />
+	    {% include "nav.html" %}
+	{% endif %}
+	<hr />
+    {% endif %}
+    {% for content in contents %}
+	{% include "content.html" %}
+    {% endfor %}
 </div>
 <div class="rcol">
 <span class=logo><a href=/community/classifieds/>Classifieds</a></span>
+<br>
+<span class=date>click for more...</span>
 {% for classified in classifieds %}
     <a href={{ classified.image.url }}><img class=classified src="{{ classified.image|thumbnail }}" /></a>
 {% endfor %}

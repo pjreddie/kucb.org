@@ -15,10 +15,17 @@ class Content(models.Model):
             self.slug = slugify(self.title)
         super(Content, self).save(*args, **kwargs)
 
+class JobCategory(models.Model):
+    name = models.CharField(max_length=100)
+    priority = models.IntegerField(blank=True, null=True)
+    def __unicode__(self):
+        return self.name
+
 class Bio(models.Model):
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name="bio")
     name = models.CharField(max_length=100, blank=True, null=True, unique=True)
     job_title = models.CharField(max_length=100)
+    job_category = models.ForeignKey(JobCategory, blank=True, null=True, on_delete=models.SET_NULL, related_name="bios")
     image = models.FileField(upload_to="img", blank=True)
     text = tinymce_models.HTMLField()
     slug = models.SlugField(blank=True, null=True)

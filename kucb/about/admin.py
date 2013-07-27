@@ -1,4 +1,4 @@
-from kucb.about.models import Announcement, Bio, Content, Program, Schedule
+from kucb.about.models import Announcement, Bio, Content, Program, Schedule, JobCategory
 from django.contrib import admin
 
 class ScheduleAdmin(admin.ModelAdmin):
@@ -6,6 +6,7 @@ class ScheduleAdmin(admin.ModelAdmin):
     ordering = ('-start_time',)
 
 admin.site.register(Announcement)
+admin.site.register(JobCategory)
 admin.site.register(Bio)
 admin.site.register(Content)
 admin.site.register(Program)

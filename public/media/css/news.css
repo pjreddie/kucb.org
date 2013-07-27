@@ -28,15 +28,6 @@
     cursor:pointer;
     color:#0087ff;
 }
-#category_list{
-    list-style:none;
-    padding:0em;
-    margin:0em;
-}
-.category{
-    padding:0em .5em;
-    line-height:1.5em;
-}
 .logo.top{
     margin-bottom:.2em;
 }

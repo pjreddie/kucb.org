@@ -35,6 +35,14 @@
 <hr class=separator />
 {% endif %}
 
+{% if posts %}
+<h1 class=logo><a href=/community/>Talk of the Town</a></h1>
+    {% for post in posts %}
+	{% include "post.html" %}
+    {% endfor %}
+<hr class=separator />
+{% endif %}
+
 <div id=community_content>
 <div class=col>
 {% include "feed.html" %}

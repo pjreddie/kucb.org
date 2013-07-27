@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
-from kucb.about.models import Announcement, Bio, Content, Program, Schedule
+from kucb.about.models import Announcement, Bio, Content, Program, Schedule, JobCategory
 from django.contrib.auth.models import User
 
 def about(request, slug=None):
@@ -15,9 +15,9 @@ def about(request, slug=None):
 
 def people(request, slug=None):
     contents = Content.objects.all()
-    bios = Bio.objects.filter(visible=True).order_by('name')   
+    categories = JobCategory.objects.all().order_by('priority', 'name')
     selected = {'slug':'people'}
-    return render_to_response('about_people.html', {'bios':bios,'contents':contents, 'selected': selected})
+    return render_to_response('about_people.html', {'categories':categories,'contents':contents, 'selected': selected})
 
 def profile(request, slug):
     bio = get_object_or_404(Bio, slug=slug)

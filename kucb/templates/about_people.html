@@ -17,13 +17,20 @@
     <li class="category logo small {{ content.slug }}"><a href="/about/{{ content.slug}}/"><div>{{ content.title }}</div></a></li>
 {% endfor %}
     <li class="category logo small people"><a href="/about/people/"><div>the people</div></a></li>
+	<ul class="subcategory_list">
+	    {% for category in categories %}
+	    <li class="category logo small"><a href=".#{{ category.name }}">{{ category.name }}</a></li>
+	    {% endfor %}
+	</ul>
     <li class="category logo small"><a href="/about/schedule/"><div>the schedule</div></a></li>
 </ul>
 </div>
 <div id=contents>
-<h1 class=logo>the people</h1>
-{% for bio in bios %}
-    {% include "bio.html" %}
+{% for category in categories %}
+    <h1 class=logo id="{{ category.name }}">{{ category.name }}</h1>
+    {% for bio in category.bios.all %}
+	{% include "bio.html" %}
+    {% endfor %}
     {% if not forloop.last %}
         <hr />
     {% endif %}
