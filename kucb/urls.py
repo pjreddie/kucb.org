@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 import kucb.news.views
 import kucb.community.views
@@ -45,8 +46,18 @@ urlpatterns = patterns('',
     url(r'^about/profile/(?P<slug>[-\w]+)/$', kucb.about.views.profile),
     url(r'^about/program/(?P<slug>[-\w]+)/$', kucb.about.views.program),
     url(r'^about/schedule/$', kucb.about.views.schedule),
+    url(r'^about/radio-schedule/$', kucb.about.views.radio_schedule),
+    url(r'^about/tv-schedule/$', kucb.about.views.tv_schedule),
     url(r'^about/(?P<slug>[-\w]+)/$', kucb.about.views.about),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('django.views.static',
+        url(r'^media/(?P<path>.*)$', 'serve',
+            {'document_root': settings.MEDIA_ROOT}),
+        url(r'^static/(?P<path>.*)$', 'serve',
+            {'document_root': settings.STATIC_ROOT}),)
+

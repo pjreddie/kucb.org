@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404, render
+from django.shortcuts import render_to_response, get_object_or_404, render, redirect
 from django.template import RequestContext
-from kucb.about.models import Announcement, Bio, Content, Program, Schedule, JobCategory
+from kucb.about.models import Announcement, Bio, Content, Program, Schedule, JobCategory, TVSchedule
 from django.contrib.auth.models import User
 
 def about(request, slug=None):
@@ -30,7 +30,9 @@ def program(request, slug):
     return render(request, 'program.html', {'program':program})
 
 def schedule(request):
-    programs = Schedule.objects.all().order_by('start_time')
+    return redirect('/about/radio-schedule/', permanent=True)
+
+def base_schedule(request, programs):
     days = [[] for i in range(7)]
     splits = []
     for program in programs:
@@ -61,3 +63,11 @@ def schedule(request):
                 day.pop(0)
         schedule.append(start)
     return render(request, "schedule.html", {"schedule":schedule})
+
+def radio_schedule(request):
+    programs = Schedule.objects.all().order_by('start_time')
+    return base_schedule(request, programs)
+
+def tv_schedule(request):
+    programs = TVSchedule.objects.all().order_by('start_time')
+    return base_schedule(request, programs)

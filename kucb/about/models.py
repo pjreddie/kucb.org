@@ -94,3 +94,27 @@ class Schedule(models.Model):
     day = models.IntegerField(max_length=2, choices=DAY_CHOICES)
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+class TVSchedule(models.Model):
+    DAY_CHOICES=(
+        ('Recurring',(
+                (-3, 'Daily'),
+                (-2, 'Weekdays'),
+                (-1, 'Weekends'),
+            )
+        ),
+        ('Single day',(
+                (0, 'Monday'),
+                (1, 'Tuesday'),
+                (2, 'Wednesday'),
+                (3, 'Thursday'),
+                (4, 'Friday'),
+                (5, 'Saturday'),
+                (6, 'Sunday'),
+            )
+        ),
+    )
+    program = models.ForeignKey(Program, related_name="tv-schedule")
+    day = models.IntegerField(max_length=2, choices=DAY_CHOICES)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
