@@ -2,6 +2,8 @@ from django.db import models
 from tinymce import models as tinymce_models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 class Content(models.Model):
     title = models.CharField(max_length=500)
@@ -43,6 +45,13 @@ class Bio(models.Model):
             self.slug = slugify(self.name)
         super(Bio, self).save(*args, **kwargs)
 
+@receiver(pre_delete, sender=Bio, dispatch_uid='handle_bio_delete')
+def bio_delete_handler(sender, instance, using, **kwargs):
+    for article in instance.articles.all():
+        if not article.author_name:
+            article.author_name = instance.name
+            article.save()
+
 class Announcement(models.Model):
     title = models.CharField(max_length = 500)
     text = tinymce_models.HTMLField()
@@ -55,7 +64,7 @@ class Announcement(models.Model):
 class Program(models.Model):
     title = models.CharField(max_length=500, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=False)
-    producer = models.ForeignKey(Bio, blank=True, null=True)
+    producer = models.ForeignKey(Bio, blank=True, null=True, on_delete=models.SET_NULL)
     producer_name = models.CharField(help_text='Optional, if not a KUCB person', blank=True, max_length=100)
     description = tinymce_models.HTMLField()
     link = models.CharField(max_length=200, blank=True)
