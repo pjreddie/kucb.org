@@ -56,6 +56,9 @@ class Blot(models.Model):
     kind = models.CharField(max_length=100, blank=True)
     details = models.TextField(blank=True)
 
+class Scanned(models.Model):
+    url = models.URLField(unique=True)
+
 class Content(models.Model):
     title = models.CharField(max_length=500)
     text = tinymce_models.HTMLField()
