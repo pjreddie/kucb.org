@@ -58,6 +58,8 @@ class Blot(models.Model):
 
 class Scanned(models.Model):
     url = models.URLField(unique=True)
+    def __unicode__(self):
+        return self.url
 
 class Content(models.Model):
     title = models.CharField(max_length=500)
