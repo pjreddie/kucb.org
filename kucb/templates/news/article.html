@@ -142,7 +142,9 @@ function windowpop(url, width, height) {
     {% if type == "full" %}
     <hr />
 
+        <div class="fb-comments" data-href="http://kucb.org{{ article.get_absolute_url }}" data-numposts="10" data-colorscheme="light" data-width="600"></div>
     <div id=comments>
+        {% comment %}
         {% if comments|length %}
         <p class="logo">afterthoughts</p>
         {% for comment in comments %}
@@ -194,6 +196,7 @@ function windowpop(url, width, height) {
         <input id=submit type="submit" value="Onward, to glory!">
         </fieldset>
         </form>
+        {% endcomment %}
     </div>
     {% endif %}
 
