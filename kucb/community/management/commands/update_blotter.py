@@ -11,8 +11,9 @@ class Command(BaseCommand):
 
     def read_blotter_url(self, url):
         r = requests.get(url)
-        pattern = re.compile("(?P<blot>\d{1,2}/\d{1,2}/\d{1,2} .*?)(<br|</p)", flags=re.DOTALL)
+        pattern = re.compile("(?P<blot>\d{1,2}/\d{1,2}/\d{1,2}.*?)(<br|</p)", flags=re.DOTALL)
         matches = pattern.finditer(r.text)
+        blots = []
         for match in matches:
             s = match.group('blot').split(None, 3)
             if s[1] == "Tues":
@@ -27,9 +28,13 @@ class Command(BaseCommand):
             kind, details = s[3].split('-', 1)
             kind = kind.strip()
             details = details.strip()
-            blot, created = Blot.objects.get_or_create(date=date, kind=kind)
+            try:
+                blot = Blot.objects.get(date=date, kind=kind)
+            except Blot.DoesNotExist:
+                blot = Blot(date=date, kind=kind)
             blot.details = details
-            blot.save()
+            blots.append(blot)
+        for blot in blots: blot.save()
         Scanned.objects.create(url=url)
         
     def handle(self, *args, **options):

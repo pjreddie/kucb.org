@@ -1,4 +1,4 @@
-from kucb.community.models import Personal, JobPosting, Blot, Event, Content, Comment, Post
+from kucb.community.models import Personal, JobPosting, Blot, Event, Content, Comment, Post, Scanned
 from django.contrib import admin
 
 class BlotAdmin(admin.ModelAdmin):
@@ -46,5 +46,6 @@ admin.site.register(Personal)
 admin.site.register(JobPosting)
 admin.site.register(Blot, BlotAdmin)
 admin.site.register(Content)
+admin.site.register(Scanned)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
