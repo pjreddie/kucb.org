@@ -155,6 +155,12 @@ function windowpop(url, width, height) {
 
         <div class="fb-comments" data-href="http://kucb.org{{ article.get_absolute_url }}" data-numposts="10" data-colorscheme="light" data-width="600"></div>
     <div id=comments>
+        {% for comment in comments %}
+            <div class=comment>
+            <p class=date>{{ comment.author }} on {{ comment.date|date:"l, F d Y" }}:</p>
+            <p class=copy>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% endfor %}
         {% comment %}
         {% if comments|length %}
         <p class="logo">afterthoughts</p>

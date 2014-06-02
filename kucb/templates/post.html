@@ -75,8 +75,14 @@ function toggle(id) {
     <hr />
 
         <div class="fb-comments" data-href="http://kucb.org{{ article.get_absolute_url }}" data-numposts="10" data-colorscheme="light" data-width="600"></div>
-        {% comment %}
     <div id=comments>
+        {% for comment in comments %}
+            <div class=comment>
+            <p class=date>{{ comment.author }} on {{ comment.date|date:"l, F d Y" }}:</p>
+            <p class=copy>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% endfor %}
+        {% comment %}
         {% if comments|length %}
         <p class="logo">afterthoughts</p>
         {% for comment in comments %}
@@ -128,8 +134,8 @@ function toggle(id) {
         <input id=submit type="submit" value="Onward, to glory!">
         </fieldset>
         </form>
-    </div>
         {% endcomment %}
+    </div>
     {% endif %}
 
 {% endif %}
