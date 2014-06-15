@@ -74,7 +74,7 @@ function toggle(id) {
     {% if type == "full" %}
     <hr />
 
-        <div class="fb-comments" data-href="http://kucb.org{{ article.get_absolute_url }}" data-numposts="10" data-colorscheme="light" data-width="600"></div>
+        <div class="fb-comments" data-href="http://kucb.org{{ post.get_absolute_url }}" data-numposts="10" data-colorscheme="light" data-width="600"></div>
     <div id=comments>
         {% for comment in comments %}
             <div class=comment>
