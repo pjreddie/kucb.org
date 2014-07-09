@@ -16,14 +16,26 @@ class Command(BaseCommand):
         blots = []
         for match in matches:
             s = match.group('blot').split(None, 3)
+            orig = s
             if s[1] == "Tues":
                 s[1] = "Tue"
             if s[1] == "Thurs":
                 s[1] = "Thu"
+            date = s[0].split("/")
+            date[2] = date[2][-2:]
+            s[0] = "/".join(date)
             s[2] = '0'*(4-len(s[2])) + s[2]
-
-            datestr = ' '.join(s[0:3])
-            date = datetime.datetime.strptime(datestr, "%m/%d/%y %a %H%M")
+            try:
+                time = datetime.datetime.strptime(s[2], "%H%M")
+            except:
+                print "Had to replace time:", s[2]
+                s[2] = "0000"
+            timestamp = ' '.join(s[0:3])
+            try:
+                date = datetime.datetime.strptime(timestamp, "%m/%d/%y %a %H%M")
+            except:
+                print "Couldn't parse:", timestamp
+                raise
             s[3] = s[3].replace(u'\u2013', '-')
             kind, details = s[3].split('-', 1)
             kind = kind.strip()
@@ -49,6 +61,9 @@ class Command(BaseCommand):
                 print "... Found"
             except Scanned.DoesNotExist:
                 print "... Being Read"
-                self.read_blotter_url(url)
+                try:
+                    self.read_blotter_url(url)
+                except:
+                    pass
                 
 
