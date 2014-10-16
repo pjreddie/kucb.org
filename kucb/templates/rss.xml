@@ -9,5 +9,14 @@
         <title>{{ article.title }}</title>
         <link>http://kucb.org/news/article/{{ article.slug }}/</link>
     </item>{% endfor %}
+    {% for event in events %}<item>
+        <title>{{ event.name }}</title>
+        <description>{{ event.description }}</description>
+        <link>http://kucb.org/community/events/{{ event.slug }}/</link>
+    </item>{% endfor %}
+    {% for post in posts %}<item>
+        <title>{{ post.title }}</title>
+        <link>http://kucb.org/community/post/{{ post.slug }}/</link>
+    </item>{% endfor %}
     </channel>
 </rss>

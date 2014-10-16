@@ -131,6 +131,16 @@ def events(request, year = None, month = None ):
 
     return render_to_response('events.html',{'date':date, 'days':days,'ongoing': ongoing, 'prev':prev_month, 'next':next_month})
 
+def events_rss(request):
+    currdate = datetime.date.today()
+    events = Event.objects.filter(start_date__gte = currdate).order_by('start_date')[:10]
+    return render_to_response('rss.xml',{'events':events}, mimetype='application/rss+xml')
+
+def posts_rss(request):
+    posts = Post.objects.filter(visible=True).order_by('-pub_date')[:10]
+    return render_to_response('rss.xml',{'posts':posts}, mimetype='application/rss+xml')
+    
+
 def blotter(request):
     blot_list = Blot.objects.all().order_by('-date')
     paginator = Paginator(blot_list, 20)
