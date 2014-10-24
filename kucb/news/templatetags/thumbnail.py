@@ -1,6 +1,6 @@
 from django import template
 import os
-import Image
+from PIL import Image
 register = template.Library()
 THUMBSIZE = 320
 

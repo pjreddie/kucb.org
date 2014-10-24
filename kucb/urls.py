@@ -24,8 +24,7 @@ urlpatterns = patterns('',
 
 
     url(r'^sitemap\.xml', kucb.news.views.sitemap),
-    url(r'^rss/talk_of_the_town/$', kucb.community.views.posts_rss),
-    url(r'^rss/events/$', kucb.community.views.events_rss),
+    url(r'^rss/tot_events/$', kucb.community.views.tot_events_rss),
     url(r'^rss/', kucb.news.views.rss),
 
     url(r'^news/$', kucb.news.views.news),

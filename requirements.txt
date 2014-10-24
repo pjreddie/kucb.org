@@ -1,5 +1,5 @@
 Django==1.4.2
-PIL==1.1.7
+Pillow
 South==0.7.6
 django-tinymce==1.5.1b2
 feedparser==5.1.3

@@ -10,8 +10,7 @@
         <link>http://kucb.org/news/article/{{ article.slug }}/</link>
     </item>{% endfor %}
     {% for event in events %}<item>
-        <title>{{ event.name }}</title>
-        <description>{{ event.description }}</description>
+        <title>{{ event.name }}: {{ event.start_date|date:"l, F d Y" }}{% if event.start_time %}{{ event.start_time|time:", P" }}{% endif %}{% if event.end_date or event.end_time %} - {% endif %}{% if event.end_date %}{{ event.end_date|date:"l, F d Y" }}{% endif %}{% if event.end_time %}{% if event.end_date %}, {% endif %}{{ event.end_time|time:"P" }}{% endif %}</title>
         <link>http://kucb.org/community/events/{{ event.slug }}/</link>
     </item>{% endfor %}
     {% for post in posts %}<item>

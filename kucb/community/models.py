@@ -5,7 +5,7 @@ from tinymce import models as tinymce_models
 from django.template.defaultfilters import slugify
 from kucb.news.templatetags.thumbnail import thumbnail
 import random
-import Image
+from PIL import Image
 from kucb.about.models import Bio
 from kucb.news.models import StockPhoto
 
