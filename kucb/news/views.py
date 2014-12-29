@@ -7,6 +7,7 @@ from kucb.about.models import Announcement
 from kucb.community.models import Blot, Event, Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm, Textarea
+from django.shortcuts import get_object_or_404
 import random
 
 
@@ -44,7 +45,7 @@ def index(request):
 
 def category(request, slug):
     editor = request.user.is_authenticated() and request.user.is_staff
-    category = Category.objects.get(slug = slug)
+    category = get_object_or_404(Category, slug = slug)
     article_list = Article.objects.filter(category=category).filter(visible=True).order_by('-pub_date')
     categories = Category.objects.all().order_by('name')
     
@@ -90,7 +91,7 @@ class CommentForm(ModelForm):
 
 
 def article(request, slug):
-    article = Article.objects.filter(visible=True).get(slug=slug)
+    article = get_object_or_404(Article.objects.filter(visible=True), slug=slug)
     editor = request.user.is_authenticated() and request.user.is_staff
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
@@ -119,9 +120,8 @@ def post(request, slug):
     article = Article.objects.all()
     for s in slug:
         if s.isalpha():
-            print s
             article = article.filter(slug__icontains=s)
-    article = article[0]
+    article = get_object_or_404(article[:1])
     return redirect('/news/article/'+article.slug, permanent=True)
 
 def sitemap(request):
