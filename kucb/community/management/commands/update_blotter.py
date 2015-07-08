@@ -16,6 +16,12 @@ class Command(BaseCommand):
         blots = []
         for match in matches:
             s = match.group('blot').split(None, 3)
+            if len(s) == 1:
+                print "new format must correct"
+                s = r.text[match.start():].split('</p>')[:4]
+                s = [a.replace('<p>', '') for a in s]
+                s = [a.replace('<div>', '') for a in s]
+                s = [a.replace('\n', '') for a in s]
             orig = s
             if s[1] == "Tues":
                 s[1] = "Tue"
@@ -28,8 +34,20 @@ class Command(BaseCommand):
             try:
                 time = datetime.datetime.strptime(s[2], "%H%M")
             except:
-                print "Had to replace time:", s[2]
-                s[2] = "0000"
+                try:
+                    print "Trying colon time..."
+                    if ":" in s[2]:
+                        time = datetime.datetime.strptime(s[2], "%H:%M")
+                    elif ";" in s[2]:
+                        time = datetime.datetime.strptime(s[2], "%H;%M")
+                    else:
+                        print "Had to replace time:", s[2]
+                        time = datetime.datetime.strptime("0000", "%H%M")
+                    s[2] = time.strftime("%H%M")
+                except Exception, e:
+                    print "colon time:", e
+                    print "Had to replace time:", s[2]
+                    s[2] = "0000"
             timestamp = ' '.join(s[0:3])
             try:
                 date = datetime.datetime.strptime(timestamp, "%m/%d/%y %a %H%M")
@@ -63,7 +81,7 @@ class Command(BaseCommand):
                 print "... Being Read"
                 try:
                     self.read_blotter_url(url)
-                except:
-                    pass
+                except Exception, e:
+                    print "Unexpected error:", e
                 
 
