@@ -131,9 +131,9 @@ def events(request, year = None, month = None ):
 
     return render_to_response('events.html',{'date':date, 'days':days,'ongoing': ongoing, 'prev':prev_month, 'next':next_month})
 
-def events_rss(request):
+def events_rss(request, num=18):
     currdate = datetime.date.today()
-    events = Event.objects.filter(start_date__gte = currdate).order_by('start_date')[:5]
+    events = Event.objects.filter(start_date__gte = currdate).order_by('start_date')[:num]
     return render_to_response('rss.xml',{'events':events}, mimetype='application/rss+xml')
 
 def tot_events_rss(request):
