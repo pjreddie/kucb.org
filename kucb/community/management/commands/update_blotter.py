@@ -55,6 +55,7 @@ class Command(BaseCommand):
                 print "Couldn't parse:", timestamp
                 raise
             s[3] = s[3].replace(u'\u2013', '-')
+            s[3] = s[3].replace(u'\u2014', '-')
             kind, details = s[3].split('-', 1)
             kind = kind.strip()
             details = details.strip()
