@@ -5,3 +5,4 @@ django-tinymce==1.5.1b2
 feedparser==5.1.3
 requests==2.1.0
 wsgiref==0.1.2
+amazing project
