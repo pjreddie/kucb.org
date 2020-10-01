@@ -5,9 +5,9 @@
     margin-top:2em;
 }
 label{
-    font-family:'Palatino','Palatino Lynotype','Georgia', serif;
+    font-family:'Sans-serif','Palatino Lynotype','Georgia', serif;
     font-size:.8em;
-    font-style:italic;
+    font-style:bold;
 }
 input{
     width:100%;
